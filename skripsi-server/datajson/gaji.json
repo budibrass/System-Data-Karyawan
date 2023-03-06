@@ -1,0 +1,78 @@
+[
+    {
+        "KaryawanId": 1,
+        "GolonganId": 1,
+        "tanggal": "2022-07-08 23:04:23.196+07",
+        "gajiPokok": 15000000,
+        "lembur": true,
+        "lamaLembur": 3,
+        "potongan": [
+            {
+                "pph21": 150000,
+                "bpjsKesehatan": 30000,
+                "bpjsKetenagaKerjaan": 30000,
+                "lainLain": 0
+            }
+        ],
+        "totalPotongan": 0,
+        "totalGajiLembur": 900000,
+        "totalGaji": 18690000
+    },
+    {
+        "KaryawanId": 2,
+        "GolonganId": 2,
+        "tanggal": "2022-07-08 23:04:23.196+07",
+        "gajiPokok": 10000000,
+        "lembur": false,
+        "lamaLembur": 0,
+        "potongan": [
+            {
+                "pph21": 150000,
+                "bpjsKesehatan": 30000,
+                "bpjsKetenagaKerjaan": 30000,
+                "lainLain": 0
+            }
+        ],
+        "totalPotongan": 0,
+        "totalGajiLembur": 0,
+        "totalGaji": 11790000
+    },
+    {
+        "KaryawanId": 3,
+        "GolonganId": 3,
+        "tanggal": "2022-07-08 23:04:23.196+07",
+        "gajiPokok": 8000000,
+        "lembur": false,
+        "lamaLembur": 0,
+        "potongan": [
+            {
+                "pph21": 150000,
+                "bpjsKesehatan": 30000,
+                "bpjsKetenagaKerjaan": 30000,
+                "lainLain": 0
+            }
+        ],
+        "totalPotongan": 0,
+        "totalGajiLembur": 0,
+        "totalGaji": 9290000
+    },
+    {
+        "KaryawanId": 4,
+        "GolonganId": 4,
+        "tanggal": "2022-07-08 23:04:23.196+07",
+        "gajiPokok": 3000000,
+        "lembur": true,
+        "lamaLembur": 1,
+        "potongan": [
+            {
+                "pph21": 150000,
+                "bpjsKesehatan": 30000,
+                "bpjsKetenagaKerjaan": 30000,
+                "lainLain": 0
+            }
+        ],
+        "totalPotongan": 0,
+        "totalGajiLembur": 50000,
+        "totalGaji": 3340000
+    }
+]

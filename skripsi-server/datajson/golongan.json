@@ -1,0 +1,26 @@
+[
+    {
+        "kodeGolongan": 1,
+        "namaGolongan": "Leader",
+        "uangTunjangan": 3000000,
+        "uangLembur": 200000
+    },
+    {
+        "kodeGolongan": 2,
+        "namaGolongan": "Senior Employes",
+        "uangTunjangan": 2000000,
+        "uangLembur": 150000
+    },
+    {
+        "kodeGolongan": 3,
+        "namaGolongan": "Employes",
+        "uangTunjangan": 1500000,
+        "uangLembur": 100000
+    },
+    {
+        "kodeGolongan": 4,
+        "namaGolongan": "Intern",
+        "uangTunjangan": 500000,
+        "uangLembur": 50000
+    }
+]
