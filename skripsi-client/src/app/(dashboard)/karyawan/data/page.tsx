@@ -119,13 +119,15 @@ export default function DataKaryawanPage() {
             )}
           </div>
 
-          <Link 
-            href="/karyawan/data/tambah-karyawan" 
-            className="flex items-center gap-2 h-11 px-5 bg-rose-500 text-white rounded-2xl font-bold text-sm hover:bg-rose-600 shadow-lg shadow-rose-100 transition-all"
-          >
-            <Plus size={18} />
-            <span className="cursor-pointer">Tambah</span>
-          </Link>
+          {roleKaryawan === 'admin' && (
+            <Link 
+              href="/karyawan/data/tambah-karyawan" 
+              className="flex items-center gap-2 h-11 px-5 bg-rose-500 text-white rounded-2xl font-bold text-sm hover:bg-rose-600 shadow-lg shadow-rose-100 transition-all"
+            >
+              <Plus size={18} />
+              <span className="cursor-pointer">Tambah</span>
+            </Link>
+          )}
         </div>
       </div>
 
