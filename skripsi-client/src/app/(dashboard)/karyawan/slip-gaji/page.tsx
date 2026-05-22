@@ -116,8 +116,7 @@ export default function SlipGajiPage() {
 
   return (
     <div className="max-w-4xl mx-auto p-2 sm:p-6 pb-12 print:p-0 print:m-0 print:w-full">
-      {console.log(filteredGaji, `<<< filteredGaji`)}
-      
+
       {/* ACTION HEADER & DROPDOWN FILTER */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 print:hidden">
         <div className="flex items-center gap-2">

@@ -99,7 +99,7 @@ export default function LemburPage() {
       return;
     }
     if (!tanggalInput || !lamaJamInput || !deskripsiInput) { 
-      addToast("Harap isi semua field input lembur termasuk deskripsi.", "warning");
+      addToast("Harap isi semua field input lembur termasuk deskripsi.", "info");
       return;
     }
 

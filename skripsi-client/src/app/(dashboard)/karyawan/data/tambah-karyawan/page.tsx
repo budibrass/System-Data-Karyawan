@@ -99,7 +99,7 @@ export default function TambahKaryawanPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className={labelStyle}>NIP</label>
-              <input required name="nip" type="text" required onChange={handleChange} className={inputStyle} placeholder="Contoh: 202601001" />
+              <input required name="nip" type="text" onChange={handleChange} className={inputStyle} placeholder="Contoh: 202601001" />
             </div>
             <div>
               <label className={labelStyle}>Email</label>
