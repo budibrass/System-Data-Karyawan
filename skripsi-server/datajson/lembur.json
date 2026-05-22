@@ -1,0 +1,163 @@
+[
+  {
+    "KaryawanId": 1,
+    "tanggal": "2026-02-05 19:00:00.000+07",
+    "lamaJam": 4,
+    "status": "ditolak",
+    "deskripsi": "Optimasi database query (4 jam) - Status: ditolak"
+  },
+  {
+    "KaryawanId": 1,
+    "tanggal": "2026-02-14 19:00:00.000+07",
+    "lamaJam": 4,
+    "status": "ditolak",
+    "deskripsi": "Fixing bug pada modul Presensi (4 jam) - Status: ditolak"
+  },
+  {
+    "KaryawanId": 2,
+    "tanggal": "2026-02-10 19:00:00.000+07",
+    "lamaJam": 2,
+    "status": "diterima",
+    "deskripsi": "Optimasi database query (2 jam) - Status: diterima"
+  },
+  {
+    "KaryawanId": 2,
+    "tanggal": "2026-04-02 19:00:00.000+07",
+    "lamaJam": 1,
+    "status": "diterima",
+    "deskripsi": "Implementasi Dark Mode (1 jam) - Status: diterima"
+  },
+  {
+    "KaryawanId": 2,
+    "tanggal": "2026-04-09 19:00:00.000+07",
+    "lamaJam": 4,
+    "status": "ditolak",
+    "deskripsi": "Implementasi Dark Mode (4 jam) - Status: ditolak"
+  },
+  {
+    "KaryawanId": 3,
+    "tanggal": "2026-03-27 19:00:00.000+07",
+    "lamaJam": 1,
+    "status": "diterima",
+    "deskripsi": "Fixing halaman Checkout (1 jam) - Status: diterima"
+  },
+  {
+    "KaryawanId": 3,
+    "tanggal": "2026-01-11 19:00:00.000+07",
+    "lamaJam": 2,
+    "status": "ditolak",
+    "deskripsi": "Memperbaiki UI Dashboard (2 jam) - Status: ditolak"
+  },
+  {
+    "KaryawanId": 3,
+    "tanggal": "2026-04-27 19:00:00.000+07",
+    "lamaJam": 4,
+    "status": "pending",
+    "deskripsi": "Implementasi Dark Mode (4 jam) - Status: pending"
+  },
+  {
+    "KaryawanId": 4,
+    "tanggal": "2026-01-08 19:00:00.000+07",
+    "lamaJam": 1,
+    "status": "diterima",
+    "deskripsi": "Optimasi database query (1 jam) - Status: diterima"
+  },
+  {
+    "KaryawanId": 5,
+    "tanggal": "2026-03-13 19:00:00.000+07",
+    "lamaJam": 2,
+    "status": "diterima",
+    "deskripsi": "Optimasi database query (2 jam) - Status: diterima"
+  },
+  {
+    "KaryawanId": 6,
+    "tanggal": "2026-04-18 19:00:00.000+07",
+    "lamaJam": 4,
+    "status": "pending",
+    "deskripsi": "Update library dependency (4 jam) - Status: pending"
+  },
+  {
+    "KaryawanId": 6,
+    "tanggal": "2026-04-13 19:00:00.000+07",
+    "lamaJam": 3,
+    "status": "pending",
+    "deskripsi": "Memperbaiki UI Dashboard (3 jam) - Status: pending"
+  },
+  {
+    "KaryawanId": 7,
+    "tanggal": "2026-04-08 19:00:00.000+07",
+    "lamaJam": 2,
+    "status": "pending",
+    "deskripsi": "Implementasi Dark Mode (2 jam) - Status: pending"
+  },
+  {
+    "KaryawanId": 7,
+    "tanggal": "2026-01-04 19:00:00.000+07",
+    "lamaJam": 1,
+    "status": "pending",
+    "deskripsi": "Fixing halaman Checkout (1 jam) - Status: pending"
+  },
+  {
+    "KaryawanId": 7,
+    "tanggal": "2026-02-12 19:00:00.000+07",
+    "lamaJam": 3,
+    "status": "diterima",
+    "deskripsi": "Optimasi database query (3 jam) - Status: diterima"
+  },
+  {
+    "KaryawanId": 8,
+    "tanggal": "2026-02-20 19:00:00.000+07",
+    "lamaJam": 1,
+    "status": "diterima",
+    "deskripsi": "Update library dependency (1 jam) - Status: diterima"
+  },
+  {
+    "KaryawanId": 8,
+    "tanggal": "2026-02-17 19:00:00.000+07",
+    "lamaJam": 1,
+    "status": "diterima",
+    "deskripsi": "Integrasi Payment Gateway (1 jam) - Status: diterima"
+  },
+  {
+    "KaryawanId": 8,
+    "tanggal": "2026-04-21 19:00:00.000+07",
+    "lamaJam": 2,
+    "status": "pending",
+    "deskripsi": "Memperbaiki UI Dashboard (2 jam) - Status: pending"
+  },
+  {
+    "KaryawanId": 9,
+    "tanggal": "2026-03-09 19:00:00.000+07",
+    "lamaJam": 4,
+    "status": "ditolak",
+    "deskripsi": "Debugging API Authentication (4 jam) - Status: ditolak"
+  },
+  {
+    "KaryawanId": 9,
+    "tanggal": "2026-01-06 19:00:00.000+07",
+    "lamaJam": 4,
+    "status": "diterima",
+    "deskripsi": "Debugging API Authentication (4 jam) - Status: diterima"
+  },
+  {
+    "KaryawanId": 10,
+    "tanggal": "2026-01-08 19:00:00.000+07",
+    "lamaJam": 3,
+    "status": "diterima",
+    "deskripsi": "Memperbaiki UI Dashboard (3 jam) - Status: diterima"
+  },
+  {
+    "KaryawanId": 10,
+    "tanggal": "2026-04-28 19:00:00.000+07",
+    "lamaJam": 1,
+    "status": "pending",
+    "deskripsi": "Fixing halaman Checkout (1 jam) - Status: pending"
+  },
+  {
+    "KaryawanId": 10,
+    "tanggal": "2026-02-14 19:00:00.000+07",
+    "lamaJam": 1,
+    "status": "ditolak",
+    "deskripsi": "Fixing bug pada modul Presensi (1 jam) - Status: ditolak"
+  }
+]

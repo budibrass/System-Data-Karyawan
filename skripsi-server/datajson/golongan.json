@@ -1,0 +1,38 @@
+[
+    {
+        "kodeGolongan": "I",
+        "namaGolongan": "Director",
+        "uangTransportasi": 2500000,
+        "uangSkill": 2800000
+    },
+    {
+        "kodeGolongan": "II",
+        "namaGolongan": "Senior Manager",
+        "uangTransportasi": 2100000,
+        "uangSkill": 2400000
+    },
+    {
+        "kodeGolongan": "III",
+        "namaGolongan": "Manager",
+        "uangTransportasi": 1800000,
+        "uangSkill": 2100000
+    },
+    {
+        "kodeGolongan": "IV",
+        "namaGolongan": "Asisten Manager",
+        "uangTransportasi": 1500000,
+        "uangSkill": 1800000
+    },
+    {
+        "kodeGolongan": "V",
+        "namaGolongan": "Staff",
+        "uangTransportasi": 1200000,
+        "uangSkill": 1500000
+    },
+    {
+        "kodeGolongan": "VI",
+        "namaGolongan": "Karyawan Kontrak",
+        "uangTransportasi": 500000,
+        "uangSkill": 0
+    }
+]

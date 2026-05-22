@@ -1,0 +1,72 @@
+[
+  {
+    "KaryawanId": 1,
+    "tanggal": "2026-03-12T09:30:00.000Z",
+    "namaReimbursement": "Internet & Telekomunikasi Bulanan",
+    "jumlah": 350000,
+    "status": "diterima"
+  },
+  {
+    "KaryawanId": 1,
+    "tanggal": "2026-05-04T14:15:22.000Z",
+    "namaReimbursement": "Bensin & Parkir Kunjungan Klien",
+    "jumlah": 125000,
+    "status": "waitconfirm"
+  },
+  {
+    "KaryawanId": 2,
+    "tanggal": "2026-02-18T11:00:00.000Z",
+    "namaReimbursement": "Pembelian Buku Referensi Kerja",
+    "jumlah": 220000,
+    "status": "diterima"
+  },
+  {
+    "KaryawanId": 2,
+    "tanggal": "2026-04-20T16:45:00.000Z",
+    "namaReimbursement": "Medical Checkup Tahunan",
+    "jumlah": 750000,
+    "status": "waitconfirm"
+  },
+  {
+    "KaryawanId": 3,
+    "tanggal": "2026-01-10T10:05:00.000Z",
+    "namaReimbursement": "Konsumsi Rapat Tim",
+    "jumlah": 450000,
+    "status": "diterima"
+  },
+  {
+    "KaryawanId": 3,
+    "tanggal": "2026-05-12T08:30:11.000Z",
+    "namaReimbursement": "Biaya Tol Luar Kota",
+    "jumlah": 180000,
+    "status": "waitconfirm"
+  },
+  {
+    "KaryawanId": 4,
+    "tanggal": "2026-03-25T13:20:00.000Z",
+    "namaReimbursement": "Perbaikan Laptop Kantor (RAM Upgrade)",
+    "jumlah": 900000,
+    "status": "diterima"
+  },
+  {
+    "KaryawanId": 4,
+    "tanggal": "2026-04-02T10:00:00.000Z",
+    "namaReimbursement": "Tiket Pesawat Dinas Surabaya",
+    "jumlah": 1400000,
+    "status": "ditolak"
+  },
+  {
+    "KaryawanId": 5,
+    "tanggal": "2026-02-05T15:00:00.000Z",
+    "namaReimbursement": "Subsidi Biaya Listrik WFH",
+    "jumlah": 250000,
+    "status": "diterima"
+  },
+  {
+    "KaryawanId": 5,
+    "tanggal": "2026-05-15T11:30:00.000Z",
+    "namaReimbursement": "Hotel Perjalanan Dinas Bandung",
+    "jumlah": 650000,
+    "status": "waitconfirm"
+  }
+]

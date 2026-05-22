@@ -1,0 +1,32 @@
+[
+  {
+    "GolonganId": 1, "ProjectId": 1, "nip": "AB-001", "email": "budi.santoso@aksaramaya.com", "namaDepan": "Budi", "namaBelakang": "Santoso", "tempatLahir": "Batam", "tanggalLahir": "1992-05-15", "jenisKelamin": "L", "agama": "ISLAM", "jabatan": "Director", "pendidikan": "Magister", "noHandphone": "081234567801", "alamat": "Jl. Sudirman No. 1", "statusPernikahan": "K", "statusKerja": "WFO", "tanggalMasuk": "2022-01-10", "jumlahTanggunganAnak": 2
+  },
+  {
+    "GolonganId": 5, "ProjectId": 2, "nip": "AB-002", "email": "andi.pratama@aksaramaya.com", "namaDepan": "Andi", "namaBelakang": "Pratama", "tempatLahir": "Bandung", "tanggalLahir": "1995-08-20", "jenisKelamin": "L", "agama": "ISLAM", "jabatan": "Staff", "pendidikan": "Sarjana", "noHandphone": "081234567802", "alamat": "Jl. Braga No. 5", "statusPernikahan": "BM", "statusKerja": "WFH", "tanggalMasuk": "2023-02-14", "jumlahTanggunganAnak": 0
+  },
+  {
+    "GolonganId": 4, "ProjectId": 7, "nip": "AB-003", "email": "siti.aminah@aksaramaya.com", "namaDepan": "Siti", "namaBelakang": "Aminah", "tempatLahir": "Yogyakarta", "tanggalLahir": "1994-03-12", "jenisKelamin": "P", "agama": "ISLAM", "jabatan": "Asisten Manager", "pendidikan": "Sarjana", "noHandphone": "081234567803", "alamat": "Jl. Malioboro No. 10", "statusPernikahan": "K", "statusKerja": "WFO", "tanggalMasuk": "2023-03-01", "jumlahTanggunganAnak": 1
+  },
+  {
+    "GolonganId": 5, "ProjectId": 4, "nip": "AB-004", "email": "dwi.lestari@aksaramaya.com", "namaDepan": "Dwi", "namaBelakang": "Lestari", "tempatLahir": "Surabaya", "tanggalLahir": "1996-11-25", "jenisKelamin": "P", "agama": "ISLAM", "jabatan": "Staff", "pendidikan": "Sarjana", "noHandphone": "081234567804", "alamat": "Jl. Basuki Rahmat No. 22", "statusPernikahan": "BM", "statusKerja": "WFH", "tanggalMasuk": "2023-05-10", "jumlahTanggunganAnak": 0
+  },
+  {
+    "GolonganId": 3, "ProjectId": 5, "nip": "AB-005", "email": "eko.prasetyo@aksaramaya.com", "namaDepan": "Eko", "namaBelakang": "Prasetyo", "tempatLahir": "Semarang", "tanggalLahir": "1990-09-30", "jenisKelamin": "L", "agama": "ISLAM", "jabatan": "Manager", "pendidikan": "Sarjana", "noHandphone": "081234567805", "alamat": "Jl. Pemuda No. 88", "statusPernikahan": "K", "statusKerja": "WFO", "tanggalMasuk": "2021-08-15", "jumlahTanggunganAnak": 2
+  },
+  {
+    "GolonganId": 6, "ProjectId": 6, "nip": "AB-006", "email": "fajar.hidayat@aksaramaya.com", "namaDepan": "Fajar", "namaBelakang": "Hidayat", "tempatLahir": "Bandung", "tanggalLahir": "1998-01-05", "jenisKelamin": "L", "agama": "ISLAM", "jabatan": "Karyawan Kontrak", "pendidikan": "Diploma", "noHandphone": "081234567806", "alamat": "Jl. Dago No. 12", "statusPernikahan": "BM", "statusKerja": "WFH", "tanggalMasuk": "2024-01-05", "jumlahTanggunganAnak": 0
+  },
+  {
+    "GolonganId": 5, "ProjectId": 3, "nip": "AB-007", "email": "gina.putri@aksaramaya.com", "namaDepan": "Gina", "namaBelakang": "Putri", "tempatLahir": "Jakarta", "tanggalLahir": "1997-06-18", "jenisKelamin": "P", "agama": "ISLAM", "jabatan": "Staff", "pendidikan": "Sarjana", "noHandphone": "081234567807", "alamat": "Jl. Gatot Subroto No. 45", "statusPernikahan": "BM", "statusKerja": "WFO", "tanggalMasuk": "2023-09-20", "jumlahTanggunganAnak": 0
+  },
+  {
+    "GolonganId": 2, "ProjectId": 8, "nip": "AB-008", "email": "hadi.winoto@aksaramaya.com", "namaDepan": "Hadi", "namaBelakang": "Winoto", "tempatLahir": "Malang", "tanggalLahir": "1988-12-12", "jenisKelamin": "L", "agama": "ISLAM", "jabatan": "Senior Manager", "pendidikan": "Sarjana", "noHandphone": "081234567808", "alamat": "Jl. Ijen No. 5", "statusPernikahan": "K", "statusKerja": "WFO", "tanggalMasuk": "2020-04-12", "jumlahTanggunganAnak": 3
+  },
+  {
+    "GolonganId": 5, "ProjectId": 9, "nip": "AB-009", "email": "indah.permata@aksaramaya.com", "namaDepan": "Indah", "namaBelakang": "Permata", "tempatLahir": "Medan", "tanggalLahir": "1999-02-14", "jenisKelamin": "P", "agama": "ISLAM", "jabatan": "Staff", "pendidikan": "Sarjana", "noHandphone": "081234567809", "alamat": "Jl. Imam Bonjol No. 3", "statusPernikahan": "BM", "statusKerja": "WFH", "tanggalMasuk": "2024-02-01", "jumlahTanggunganAnak": 0
+  },
+  {
+    "GolonganId": 4, "ProjectId": 10, "nip": "AB-010", "email": "joko.susilo@aksaramaya.com", "namaDepan": "Joko", "namaBelakang": "Susilo", "tempatLahir": "Solo", "tanggalLahir": "1993-07-22", "jenisKelamin": "L", "agama": "ISLAM", "jabatan": "Asisten Manager", "pendidikan": "Sarjana", "noHandphone": "081234567810", "alamat": "Jl. Slamet Riyadi No. 99", "statusPernikahan": "K", "statusKerja": "WFO", "tanggalMasuk": "2022-11-15", "jumlahTanggunganAnak": 1
+  }
+]

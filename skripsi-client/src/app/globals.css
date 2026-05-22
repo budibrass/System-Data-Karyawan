@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  /* Merah Aksaramaya yang Modern & Elegan */
+  --color-primary: #be123c; /* Rose 700 */
+  --color-primary-dark: #9f1239; /* Rose 800 */
+  --color-primary-light: #e11d48; /* Rose 600 */
+}
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}

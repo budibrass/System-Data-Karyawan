@@ -1,0 +1,722 @@
+[
+  {
+    "KaryawanId": 1,
+    "tanggal": "2026-01-28 23:00:00.000+07",
+    "gajiPokok": 20000000,
+    "lembur": true,
+    "lamaLembur": 3,
+    "potongan": [
+      {
+        "pph21": 400000,
+        "bpjsKesehatan": 200000,
+        "bpjsKetenagaKerjaan": 200000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 800000,
+    "totalGajiLembur": 600000,
+    "totalGaji": 19800000
+  },
+  {
+    "KaryawanId": 2,
+    "tanggal": "2026-01-28 23:00:00.000+07",
+    "gajiPokok": 15000000,
+    "lembur": true,
+    "lamaLembur": 4,
+    "potongan": [
+      {
+        "pph21": 300000,
+        "bpjsKesehatan": 150000,
+        "bpjsKetenagaKerjaan": 150000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 600000,
+    "totalGajiLembur": 600000,
+    "totalGaji": 15000000
+  },
+  {
+    "KaryawanId": 3,
+    "tanggal": "2026-01-28 23:00:00.000+07",
+    "gajiPokok": 10000000,
+    "lembur": false,
+    "lamaLembur": 0,
+    "potongan": [
+      {
+        "pph21": 200000,
+        "bpjsKesehatan": 100000,
+        "bpjsKetenagaKerjaan": 100000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 400000,
+    "totalGajiLembur": 0,
+    "totalGaji": 9600000
+  },
+  {
+    "KaryawanId": 4,
+    "tanggal": "2026-01-28 23:00:00.000+07",
+    "gajiPokok": 7000000,
+    "lembur": true,
+    "lamaLembur": 5,
+    "potongan": [
+      {
+        "pph21": 140000,
+        "bpjsKesehatan": 70000,
+        "bpjsKetenagaKerjaan": 70000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 280000,
+    "totalGajiLembur": 250000,
+    "totalGaji": 6970000
+  },
+  {
+    "KaryawanId": 5,
+    "tanggal": "2026-01-28 23:00:00.000+07",
+    "gajiPokok": 4500000,
+    "lembur": true,
+    "lamaLembur": 4,
+    "potongan": [
+      {
+        "pph21": 90000,
+        "bpjsKesehatan": 45000,
+        "bpjsKetenagaKerjaan": 45000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 180000,
+    "totalGajiLembur": 0,
+    "totalGaji": 4320000
+  },
+  {
+    "KaryawanId": 6,
+    "tanggal": "2026-01-28 23:00:00.000+07",
+    "gajiPokok": 25000000,
+    "lembur": true,
+    "lamaLembur": 2,
+    "potongan": [
+      {
+        "pph21": 500000,
+        "bpjsKesehatan": 250000,
+        "bpjsKetenagaKerjaan": 250000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 1000000,
+    "totalGajiLembur": 600000,
+    "totalGaji": 24600000
+  },
+  {
+    "KaryawanId": 7,
+    "tanggal": "2026-01-28 23:00:00.000+07",
+    "gajiPokok": 20000000,
+    "lembur": true,
+    "lamaLembur": 1,
+    "potongan": [
+      {
+        "pph21": 400000,
+        "bpjsKesehatan": 200000,
+        "bpjsKetenagaKerjaan": 200000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 800000,
+    "totalGajiLembur": 200000,
+    "totalGaji": 19400000
+  },
+  {
+    "KaryawanId": 8,
+    "tanggal": "2026-01-28 23:00:00.000+07",
+    "gajiPokok": 15000000,
+    "lembur": false,
+    "lamaLembur": 0,
+    "potongan": [
+      {
+        "pph21": 300000,
+        "bpjsKesehatan": 150000,
+        "bpjsKetenagaKerjaan": 150000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 600000,
+    "totalGajiLembur": 0,
+    "totalGaji": 14400000
+  },
+  {
+    "KaryawanId": 9,
+    "tanggal": "2026-01-28 23:00:00.000+07",
+    "gajiPokok": 10000000,
+    "lembur": true,
+    "lamaLembur": 5,
+    "potongan": [
+      {
+        "pph21": 200000,
+        "bpjsKesehatan": 100000,
+        "bpjsKetenagaKerjaan": 100000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 400000,
+    "totalGajiLembur": 500000,
+    "totalGaji": 10100000
+  },
+  {
+    "KaryawanId": 10,
+    "tanggal": "2026-01-28 23:00:00.000+07",
+    "gajiPokok": 7000000,
+    "lembur": true,
+    "lamaLembur": 3,
+    "potongan": [
+      {
+        "pph21": 140000,
+        "bpjsKesehatan": 70000,
+        "bpjsKetenagaKerjaan": 70000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 280000,
+    "totalGajiLembur": 150000,
+    "totalGaji": 6870000
+  },
+  {
+    "KaryawanId": 1,
+    "tanggal": "2026-02-28 23:00:00.000+07",
+    "gajiPokok": 20000000,
+    "lembur": true,
+    "lamaLembur": 3,
+    "potongan": [
+      {
+        "pph21": 400000,
+        "bpjsKesehatan": 200000,
+        "bpjsKetenagaKerjaan": 200000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 800000,
+    "totalGajiLembur": 600000,
+    "totalGaji": 19800000
+  },
+  {
+    "KaryawanId": 2,
+    "tanggal": "2026-02-28 23:00:00.000+07",
+    "gajiPokok": 15000000,
+    "lembur": true,
+    "lamaLembur": 1,
+    "potongan": [
+      {
+        "pph21": 300000,
+        "bpjsKesehatan": 150000,
+        "bpjsKetenagaKerjaan": 150000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 600000,
+    "totalGajiLembur": 150000,
+    "totalGaji": 14550000
+  },
+  {
+    "KaryawanId": 3,
+    "tanggal": "2026-02-28 23:00:00.000+07",
+    "gajiPokok": 10000000,
+    "lembur": false,
+    "lamaLembur": 0,
+    "potongan": [
+      {
+        "pph21": 200000,
+        "bpjsKesehatan": 100000,
+        "bpjsKetenagaKerjaan": 100000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 400000,
+    "totalGajiLembur": 0,
+    "totalGaji": 9600000
+  },
+  {
+    "KaryawanId": 4,
+    "tanggal": "2026-02-28 23:00:00.000+07",
+    "gajiPokok": 7000000,
+    "lembur": true,
+    "lamaLembur": 2,
+    "potongan": [
+      {
+        "pph21": 140000,
+        "bpjsKesehatan": 70000,
+        "bpjsKetenagaKerjaan": 70000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 280000,
+    "totalGajiLembur": 100000,
+    "totalGaji": 6820000
+  },
+  {
+    "KaryawanId": 5,
+    "tanggal": "2026-02-28 23:00:00.000+07",
+    "gajiPokok": 4500000,
+    "lembur": true,
+    "lamaLembur": 4,
+    "potongan": [
+      {
+        "pph21": 90000,
+        "bpjsKesehatan": 45000,
+        "bpjsKetenagaKerjaan": 45000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 180000,
+    "totalGajiLembur": 0,
+    "totalGaji": 4320000
+  },
+  {
+    "KaryawanId": 6,
+    "tanggal": "2026-02-28 23:00:00.000+07",
+    "gajiPokok": 25000000,
+    "lembur": false,
+    "lamaLembur": 0,
+    "potongan": [
+      {
+        "pph21": 500000,
+        "bpjsKesehatan": 250000,
+        "bpjsKetenagaKerjaan": 250000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 1000000,
+    "totalGajiLembur": 0,
+    "totalGaji": 24000000
+  },
+  {
+    "KaryawanId": 7,
+    "tanggal": "2026-02-28 23:00:00.000+07",
+    "gajiPokok": 20000000,
+    "lembur": true,
+    "lamaLembur": 1,
+    "potongan": [
+      {
+        "pph21": 400000,
+        "bpjsKesehatan": 200000,
+        "bpjsKetenagaKerjaan": 200000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 800000,
+    "totalGajiLembur": 200000,
+    "totalGaji": 19400000
+  },
+  {
+    "KaryawanId": 8,
+    "tanggal": "2026-02-28 23:00:00.000+07",
+    "gajiPokok": 15000000,
+    "lembur": true,
+    "lamaLembur": 1,
+    "potongan": [
+      {
+        "pph21": 300000,
+        "bpjsKesehatan": 150000,
+        "bpjsKetenagaKerjaan": 150000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 600000,
+    "totalGajiLembur": 150000,
+    "totalGaji": 14550000
+  },
+  {
+    "KaryawanId": 9,
+    "tanggal": "2026-02-28 23:00:00.000+07",
+    "gajiPokok": 10000000,
+    "lembur": true,
+    "lamaLembur": 2,
+    "potongan": [
+      {
+        "pph21": 200000,
+        "bpjsKesehatan": 100000,
+        "bpjsKetenagaKerjaan": 100000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 400000,
+    "totalGajiLembur": 200000,
+    "totalGaji": 9800000
+  },
+  {
+    "KaryawanId": 10,
+    "tanggal": "2026-02-28 23:00:00.000+07",
+    "gajiPokok": 7000000,
+    "lembur": true,
+    "lamaLembur": 4,
+    "potongan": [
+      {
+        "pph21": 140000,
+        "bpjsKesehatan": 70000,
+        "bpjsKetenagaKerjaan": 70000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 280000,
+    "totalGajiLembur": 200000,
+    "totalGaji": 6920000
+  },
+  {
+    "KaryawanId": 1,
+    "tanggal": "2026-03-28 23:00:00.000+07",
+    "gajiPokok": 20000000,
+    "lembur": true,
+    "lamaLembur": 4,
+    "potongan": [
+      {
+        "pph21": 400000,
+        "bpjsKesehatan": 200000,
+        "bpjsKetenagaKerjaan": 200000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 800000,
+    "totalGajiLembur": 800000,
+    "totalGaji": 20000000
+  },
+  {
+    "KaryawanId": 2,
+    "tanggal": "2026-03-28 23:00:00.000+07",
+    "gajiPokok": 15000000,
+    "lembur": true,
+    "lamaLembur": 3,
+    "potongan": [
+      {
+        "pph21": 300000,
+        "bpjsKesehatan": 150000,
+        "bpjsKetenagaKerjaan": 150000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 600000,
+    "totalGajiLembur": 450000,
+    "totalGaji": 14850000
+  },
+  {
+    "KaryawanId": 3,
+    "tanggal": "2026-03-28 23:00:00.000+07",
+    "gajiPokok": 10000000,
+    "lembur": true,
+    "lamaLembur": 3,
+    "potongan": [
+      {
+        "pph21": 200000,
+        "bpjsKesehatan": 100000,
+        "bpjsKetenagaKerjaan": 100000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 400000,
+    "totalGajiLembur": 300000,
+    "totalGaji": 9900000
+  },
+  {
+    "KaryawanId": 4,
+    "tanggal": "2026-03-28 23:00:00.000+07",
+    "gajiPokok": 7000000,
+    "lembur": true,
+    "lamaLembur": 3,
+    "potongan": [
+      {
+        "pph21": 140000,
+        "bpjsKesehatan": 70000,
+        "bpjsKetenagaKerjaan": 70000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 280000,
+    "totalGajiLembur": 150000,
+    "totalGaji": 6870000
+  },
+  {
+    "KaryawanId": 5,
+    "tanggal": "2026-03-28 23:00:00.000+07",
+    "gajiPokok": 4500000,
+    "lembur": true,
+    "lamaLembur": 4,
+    "potongan": [
+      {
+        "pph21": 90000,
+        "bpjsKesehatan": 45000,
+        "bpjsKetenagaKerjaan": 45000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 180000,
+    "totalGajiLembur": 0,
+    "totalGaji": 4320000
+  },
+  {
+    "KaryawanId": 6,
+    "tanggal": "2026-03-28 23:00:00.000+07",
+    "gajiPokok": 25000000,
+    "lembur": true,
+    "lamaLembur": 1,
+    "potongan": [
+      {
+        "pph21": 500000,
+        "bpjsKesehatan": 250000,
+        "bpjsKetenagaKerjaan": 250000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 1000000,
+    "totalGajiLembur": 300000,
+    "totalGaji": 24300000
+  },
+  {
+    "KaryawanId": 7,
+    "tanggal": "2026-03-28 23:00:00.000+07",
+    "gajiPokok": 20000000,
+    "lembur": true,
+    "lamaLembur": 5,
+    "potongan": [
+      {
+        "pph21": 400000,
+        "bpjsKesehatan": 200000,
+        "bpjsKetenagaKerjaan": 200000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 800000,
+    "totalGajiLembur": 1000000,
+    "totalGaji": 20200000
+  },
+  {
+    "KaryawanId": 8,
+    "tanggal": "2026-03-28 23:00:00.000+07",
+    "gajiPokok": 15000000,
+    "lembur": false,
+    "lamaLembur": 0,
+    "potongan": [
+      {
+        "pph21": 300000,
+        "bpjsKesehatan": 150000,
+        "bpjsKetenagaKerjaan": 150000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 600000,
+    "totalGajiLembur": 0,
+    "totalGaji": 14400000
+  },
+  {
+    "KaryawanId": 9,
+    "tanggal": "2026-03-28 23:00:00.000+07",
+    "gajiPokok": 10000000,
+    "lembur": true,
+    "lamaLembur": 1,
+    "potongan": [
+      {
+        "pph21": 200000,
+        "bpjsKesehatan": 100000,
+        "bpjsKetenagaKerjaan": 100000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 400000,
+    "totalGajiLembur": 100000,
+    "totalGaji": 9700000
+  },
+  {
+    "KaryawanId": 10,
+    "tanggal": "2026-03-28 23:00:00.000+07",
+    "gajiPokok": 7000000,
+    "lembur": true,
+    "lamaLembur": 5,
+    "potongan": [
+      {
+        "pph21": 140000,
+        "bpjsKesehatan": 70000,
+        "bpjsKetenagaKerjaan": 70000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 280000,
+    "totalGajiLembur": 250000,
+    "totalGaji": 6970000
+  },
+  {
+    "KaryawanId": 1,
+    "tanggal": "2026-04-28 23:00:00.000+07",
+    "gajiPokok": 20000000,
+    "lembur": true,
+    "lamaLembur": 3,
+    "potongan": [
+      {
+        "pph21": 400000,
+        "bpjsKesehatan": 200000,
+        "bpjsKetenagaKerjaan": 200000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 800000,
+    "totalGajiLembur": 600000,
+    "totalGaji": 19800000
+  },
+  {
+    "KaryawanId": 2,
+    "tanggal": "2026-04-28 23:00:00.000+07",
+    "gajiPokok": 15000000,
+    "lembur": true,
+    "lamaLembur": 2,
+    "potongan": [
+      {
+        "pph21": 300000,
+        "bpjsKesehatan": 150000,
+        "bpjsKetenagaKerjaan": 150000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 600000,
+    "totalGajiLembur": 300000,
+    "totalGaji": 14700000
+  },
+  {
+    "KaryawanId": 3,
+    "tanggal": "2026-04-28 23:00:00.000+07",
+    "gajiPokok": 10000000,
+    "lembur": true,
+    "lamaLembur": 4,
+    "potongan": [
+      {
+        "pph21": 200000,
+        "bpjsKesehatan": 100000,
+        "bpjsKetenagaKerjaan": 100000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 400000,
+    "totalGajiLembur": 400000,
+    "totalGaji": 10000000
+  },
+  {
+    "KaryawanId": 4,
+    "tanggal": "2026-04-28 23:00:00.000+07",
+    "gajiPokok": 7000000,
+    "lembur": true,
+    "lamaLembur": 1,
+    "potongan": [
+      {
+        "pph21": 140000,
+        "bpjsKesehatan": 70000,
+        "bpjsKetenagaKerjaan": 70000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 280000,
+    "totalGajiLembur": 50000,
+    "totalGaji": 6770000
+  },
+  {
+    "KaryawanId": 5,
+    "tanggal": "2026-04-28 23:00:00.000+07",
+    "gajiPokok": 4500000,
+    "lembur": true,
+    "lamaLembur": 4,
+    "potongan": [
+      {
+        "pph21": 90000,
+        "bpjsKesehatan": 45000,
+        "bpjsKetenagaKerjaan": 45000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 180000,
+    "totalGajiLembur": 0,
+    "totalGaji": 4320000
+  },
+  {
+    "KaryawanId": 6,
+    "tanggal": "2026-04-28 23:00:00.000+07",
+    "gajiPokok": 25000000,
+    "lembur": true,
+    "lamaLembur": 3,
+    "potongan": [
+      {
+        "pph21": 500000,
+        "bpjsKesehatan": 250000,
+        "bpjsKetenagaKerjaan": 250000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 1000000,
+    "totalGajiLembur": 900000,
+    "totalGaji": 24900000
+  },
+  {
+    "KaryawanId": 7,
+    "tanggal": "2026-04-28 23:00:00.000+07",
+    "gajiPokok": 20000000,
+    "lembur": true,
+    "lamaLembur": 4,
+    "potongan": [
+      {
+        "pph21": 400000,
+        "bpjsKesehatan": 200000,
+        "bpjsKetenagaKerjaan": 200000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 800000,
+    "totalGajiLembur": 800000,
+    "totalGaji": 20000000
+  },
+  {
+    "KaryawanId": 8,
+    "tanggal": "2026-04-28 23:00:00.000+07",
+    "gajiPokok": 15000000,
+    "lembur": true,
+    "lamaLembur": 1,
+    "potongan": [
+      {
+        "pph21": 300000,
+        "bpjsKesehatan": 150000,
+        "bpjsKetenagaKerjaan": 150000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 600000,
+    "totalGajiLembur": 150000,
+    "totalGaji": 14550000
+  },
+  {
+    "KaryawanId": 9,
+    "tanggal": "2026-04-28 23:00:00.000+07",
+    "gajiPokok": 10000000,
+    "lembur": true,
+    "lamaLembur": 4,
+    "potongan": [
+      {
+        "pph21": 200000,
+        "bpjsKesehatan": 100000,
+        "bpjsKetenagaKerjaan": 100000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 400000,
+    "totalGajiLembur": 400000,
+    "totalGaji": 10000000
+  },
+  {
+    "KaryawanId": 10,
+    "tanggal": "2026-04-28 23:00:00.000+07",
+    "gajiPokok": 7000000,
+    "lembur": true,
+    "lamaLembur": 2,
+    "potongan": [
+      {
+        "pph21": 140000,
+        "bpjsKesehatan": 70000,
+        "bpjsKetenagaKerjaan": 70000,
+        "lainLain": 0
+      }
+    ],
+    "totalPotongan": 280000,
+    "totalGajiLembur": 100000,
+    "totalGaji": 6820000
+  }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "KaryawanId": 1,
+        "bulan": "2022-07-25 08:04:23.196+07",
+        "presensiJumlahKehadiran": 30,
+        "presensiIzinSakit": 0,
+        "presensiAlfa": 0,
+        "presensiNilai": 100,
+        "ProjectId": 1,
+        "kinerja": "B",
+        "totalNilai": "90"
+    },
+    {
+        "KaryawanId": 2,
+        "bulan": "2022-07-25 08:04:23.196+07",
+        "presensiJumlahKehadiran": 30,
+        "presensiIzinSakit": 0,
+        "presensiAlfa": 0,
+        "presensiNilai": 100,
+        "ProjectId": 2,
+        "kinerja": "B",
+        "totalNilai": "90"
+    },
+    {
+        "KaryawanId": 3,
+        "bulan": "2022-07-25 08:04:23.196+07",
+        "presensiJumlahKehadiran": 30,
+        "presensiIzinSakit": 0,
+        "presensiAlfa": 0,
+        "presensiNilai": 100,
+        "ProjectId": 3,
+        "kinerja": "B",
+        "totalNilai": "90"
+    },
+    {
+        "KaryawanId": 4,
+        "bulan": "2022-07-25 08:04:23.196+07",
+        "presensiJumlahKehadiran": 30,
+        "presensiIzinSakit": 0,
+        "presensiAlfa": 0,
+        "presensiNilai": 100,
+        "ProjectId": 3,
+        "kinerja": "B",
+        "totalNilai": "90"
+    }
+]
