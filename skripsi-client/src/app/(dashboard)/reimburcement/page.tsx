@@ -328,7 +328,10 @@ export default function ReimbursementPage() {
                   </td>
                 </tr>
               ) : (
-                currentItems.map((item, index) => (
+                currentItems.map((item, index) => {
+                  console.log(item, `<<< item`);
+                  
+                  return (
                   <tr key={item.id} className="hover:bg-slate-50/40 transition-colors">
                     <td className="py-4 px-6 text-slate-400 font-mono">{indexOfFirstItem + index + 1}</td>
                     <td className="py-4 px-6 text-slate-600">{formatTanggal(item.tanggal)}</td>
@@ -354,7 +357,8 @@ export default function ReimbursementPage() {
 
                     <td className="py-4 px-6 text-right">{renderStatusBadge(item.status)}</td>
                   </tr>
-                ))
+                )
+                })
               )}
             </tbody>
           </table>

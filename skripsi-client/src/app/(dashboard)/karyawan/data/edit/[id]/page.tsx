@@ -4,11 +4,13 @@ import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, Save, Camera, User } from "lucide-react";
 import api from "@/lib/axios";
 import { useToastStore } from "@/store/useToastStore";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export default function EditKaryawanPage() {
   const { id } = useParams();
   const router = useRouter();
   const addToast = useToastStore((state) => state.addToast);
+  const { role } = useAuthStore((state) => state); 
   
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -194,15 +196,15 @@ export default function EditKaryawanPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">NIP</label>
-                <input type="text" name="nip" value={formData.nip} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
+                <input type="text" name="nip" disabled={role === "admin" ? false : true} value={formData.nip} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Jabatan</label>
-                <input type="text" name="jabatan" value={formData.jabatan} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
+                <input type="text" name="jabatan" disabled={role === "admin" ? false : true} value={formData.jabatan} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Email</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
+                <input type="email" name="email" disabled={role === "admin" ? false : true} value={formData.email} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
               </div>
             </div>
           </div>
@@ -265,7 +267,7 @@ export default function EditKaryawanPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-rose-900/80">Jenis Kelamin</label>
-                  <select name="jenisKelamin" value={formData.jenisKelamin} onChange={handleChange} className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
+                  <select name="jenisKelamin" disabled={role === "admin" ? false : true} value={formData.jenisKelamin} onChange={handleChange} className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
                     <option value="L">Laki-Laki</option>
                     <option value="P">Perempuan</option>
                   </select>
@@ -308,7 +310,7 @@ export default function EditKaryawanPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Golongan Pegawai</label>
-                <select name="GolonganId" value={formData.GolonganId} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
+                <select name="GolonganId" disabled={role === "admin" ? false : true} value={formData.GolonganId} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
                   <option value="">Pilih Golongan</option>
                   {golonganOptions.map((gol) => (
                     <option key={gol.id} value={gol.id}>{gol.namaGolongan}</option>
@@ -317,7 +319,7 @@ export default function EditKaryawanPage() {
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Penempatan Project</label>
-                <select name="ProjectId" value={formData.ProjectId} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
+                <select name="ProjectId" disabled={role === "admin" ? false : true} value={formData.ProjectId} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
                   <option value="">Pilih Project</option>
                   {projectOptions.map((proj) => (
                     <option key={proj.id} value={proj.id}>{proj.nama}</option>
@@ -326,11 +328,11 @@ export default function EditKaryawanPage() {
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Tanggal Masuk Kerja</label>
-                <input type="date" name="tanggalMasuk" value={formData.tanggalMasuk} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
+                <input type="date" name="tanggalMasuk" disabled={role === "admin" ? false : true} value={formData.tanggalMasuk} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Status Kerja</label>
-                <select name="statusKerja" value={formData.statusKerja} onChange={handleChange} className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
+                <select name="statusKerja" disabled={role === "admin" ? false : true} value={formData.statusKerja} onChange={handleChange} className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
                   <option value="WFO">WFO (Work From Office)</option>
                   <option value="WFH">WFH (Work From Home)</option>
                 </select>
