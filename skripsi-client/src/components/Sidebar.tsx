@@ -166,7 +166,10 @@ export default function Sidebar() {
         {/* FOOTER */}
         <div className="mt-auto pt-6 border-t border-rose-100 px-4">
           <button 
-            onClick={() => { logout(); window.location.href = "/login"; }}
+            onClick={() => { 
+              logout(); window.location.href = "/login";
+              localStorage.clear()
+            }}
             title="Keluar"
             className={`flex w-full items-center rounded-xl py-3 text-rose-400 hover:bg-rose-500 hover:text-white transition-all duration-300 group ${isCollapsed ? "justify-center px-0" : "px-3 gap-3"}`}
           >
