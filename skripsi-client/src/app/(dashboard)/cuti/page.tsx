@@ -29,8 +29,10 @@ export default function CutiPage() {
     if (typeof window !== "undefined") {
       return {
         id: localStorage.getItem("id"),
-        nama: localStorage.getItem("nama") || "Karyawan"
-      };
+        nama: historyCuti[0]?.Karyawan?.namaDepan 
+          ? `${historyCuti[0].Karyawan.namaDepan} ${historyCuti[0].Karyawan.namaBelakang || ""}`.trim() 
+          : (typeof window !== "undefined" ? localStorage.getItem("nama") : null) || "Karyawan"
+      } ;
     }
     return { id: null, nama: "Karyawan" };
   };
@@ -359,7 +361,7 @@ export default function CutiPage() {
                     <td className="py-4 px-6 text-center">
                       <button
                         onClick={() => handlePrintRow(item)}
-                        className="p-2 text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors inline-flex items-center justify-center gap-1"
+                        className="p-2 cursor-pointer text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors inline-flex items-center justify-center gap-1"
                         title="Print Dokumen Cuti"
                       >
                         <Printer size={15} />

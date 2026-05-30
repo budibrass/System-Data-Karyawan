@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Calendar, Clock, Send, CalendarDays, ChevronLeft, ChevronRight, CheckCircle2, Clock3, XCircle, FileText, User } from "lucide-react";
+// 🌟 PERUBAHAN: Menambahkan icon Printer dari lucide-react
+import { Calendar, Clock, Send, CalendarDays, ChevronLeft, ChevronRight, CheckCircle2, Clock3, XCircle, FileText, User, Printer } from "lucide-react";
 import api from "@/lib/axios";
 import { useToastStore } from "@/store/useToastStore";
 
@@ -19,12 +20,12 @@ export default function LemburPage() {
 
   // --- STATE TABLE, FILTER & PAGINATION ---
   const [historyLembur, setHistoryLembur] = useState<any[]>([]);
-  const [daftarKaryawan, setDaftarKaryawan] = useState<any[]>([]); // Menyimpan list unik karyawan untuk filter admin
+  const [daftarKaryawan, setDaftarKaryawan] = useState<any[]>([]); 
   const [tableLoading, setTableLoading] = useState(true);
   
   const [filterBulan, setFilterBulan] = useState<number | string>(new Date().getMonth() + 1); 
   const [filterTahun, setFilterTahun] = useState<number | string>(new Date().getFullYear()); 
-  const [filterAdminKaryawan, setFilterAdminKaryawan] = useState<string>(""); // State filter nama karyawan (Khusus Admin)
+  const [filterAdminKaryawan, setFilterAdminKaryawan] = useState<string>(""); 
   
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -34,7 +35,7 @@ export default function LemburPage() {
   // --- AMBIL SESSION USER & DATA AWAL ---
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const role = localStorage.getItem("role"); // Mengambil role (admin / karyawan)
+      const role = localStorage.getItem("role"); 
       const id = localStorage.getItem("id");
       setUserRole(role ? role.toLowerCase() : "karyawan");
       setCurrentKaryawanId(id);
@@ -54,10 +55,8 @@ export default function LemburPage() {
       const karyawanId = localStorage.getItem("id");
 
       if (role === "admin") {
-        // 1. Jika Admin: Masukkan semua data lembur tanpa di-filter di awal
         setHistoryLembur(response.data);
 
-        // 2. Ekstrak daftar nama karyawan unik dari relasi include model Karyawan untuk opsi dropdown filter
         const listKaryawan: any[] = [];
         const uniqueIds = new Set();
 
@@ -72,7 +71,6 @@ export default function LemburPage() {
         });
         setDaftarKaryawan(listKaryawan);
       } else {
-        // 3. Jika Bukan Admin: Filter data yang KaryawanId-nya sesuai dengan milik user sendiri
         const dataFilter = response.data.filter((e: { KaryawanId: number; }) => e.KaryawanId === Number(karyawanId));
         setHistoryLembur(dataFilter);
       }
@@ -137,7 +135,6 @@ export default function LemburPage() {
       const matchBulan = filterBulan !== "" ? (date.getMonth() + 1) === Number(filterBulan) : true;
       const matchTahun = filterTahun !== "" ? date.getFullYear() === Number(filterTahun) : true;
       
-      // 🌟 REKAYASA FILTER ADMIN: Jika role admin dan filter nama dipilih, filter berdasarkan KaryawanId
       const matchKaryawan = (userRole === "admin" && filterAdminKaryawan !== "") 
         ? item.KaryawanId === Number(filterAdminKaryawan) 
         : true;
@@ -192,10 +189,11 @@ export default function LemburPage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-4 sm:p-6 space-y-8">
+    // 🌟 PERUBAHAN: Penyesuaian max-width saat diprint (print:max-w-none print:p-0)
+    <div className="max-w-5xl mx-auto p-4 sm:p-6 space-y-8 print:max-w-none print:p-0 print:m-0">
       
-      {/* CARD 1: FORM PENGAJUAN LEMBUR) */}
-      <div className="bg-white border border-slate-100 rounded-3xl shadow-xl shadow-slate-100/50 p-6 sm:p-8">
+      {/* CARD 1: FORM PENGAJUAN LEMBUR - 🌟 PERUBAHAN: Disembunyikan saat print (print:hidden) */}
+      <div className="bg-white border border-slate-100 rounded-3xl shadow-xl shadow-slate-100/50 p-6 sm:p-8 print:hidden">
         <div className="flex items-center gap-3 border-b border-slate-100 pb-4 mb-6">
           <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl">
             <Clock size={22} className="stroke-[2.5]" />
@@ -268,19 +266,20 @@ export default function LemburPage() {
         </form>
       </div>
 
-      {/* CARD 2: FILTER & TABEL RIWAYAT */}
-      <div className="bg-white border border-slate-100 rounded-3xl shadow-xl shadow-slate-100/50 overflow-hidden">
+      {/* CARD 2: FILTER & TABEL RIWAYAT - 🌟 PERUBAHAN: Hilangkan bayangan saat print */}
+      <div className="bg-white border border-slate-100 rounded-3xl shadow-xl shadow-slate-100/50 print:shadow-none print:border-none print:rounded-none overflow-hidden">
         
-        <div className="p-6 border-b border-slate-100 bg-slate-50/50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        {/* HEADER TABEL - 🌟 PERUBAHAN: Hapus border dan bg saat print */}
+        <div className="p-6 border-b border-slate-100 bg-slate-50/50 print:bg-transparent print:p-0 print:border-none print:mb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="flex items-center gap-2">
-            <CalendarDays size={18} className="text-slate-500" />
+            <CalendarDays size={18} className="text-slate-500 print:hidden" />
             <h3 className="text-sm font-black text-slate-800 uppercase tracking-wide">
               {userRole === "admin" ? "Daftar Pengajuan Lembur Seluruh Karyawan" : "Riwayat Pengajuan Lembur"}
             </h3>
           </div>
           
-          <div className="flex flex-wrap gap-3 w-full md:w-auto">
-            {/* 🌟 REKAYASA FILTER DROPDOWN KARYAWAN: Hanya tampil jika yang masuk adalah Admin */}
+          {/* 🌟 PERUBAHAN: Sembunyikan blok filter dan tombol cetak di kertas print */}
+          <div className="flex flex-wrap gap-3 w-full md:w-auto print:hidden">
             {userRole === "admin" && (
               <select
                 value={filterAdminKaryawan}
@@ -317,15 +316,23 @@ export default function LemburPage() {
               <option value="">Semua Tahun</option>
               <option value={tahunSekarang}>{tahunSekarang}</option>
             </select>
+
+            {/* 🌟 PERUBAHAN: TOMBOL CETAK */}
+            <button
+              onClick={() => window.print()}
+              className="flex items-center cursor-pointer gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-bold hover:bg-slate-800 transition-colors shadow-sm"
+            >
+              <Printer size={14} />
+            </button>
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* 🌟 PERUBAHAN: Mengubah overflow agar tabel di kertas utuh tidak discroll */}
+        <div className="overflow-x-auto print:overflow-visible">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-slate-100 text-slate-400 text-[11px] font-black uppercase tracking-wider bg-slate-50/20">
+              <tr className="border-b border-slate-100 text-slate-400 text-[11px] font-black uppercase tracking-wider bg-slate-50/20 print:bg-slate-100/50">
                 <th className="py-4 px-6 w-16">No</th>
-                {/* 🌟 TAMBAHAN KOLOM KARYAWAN: Hanya tampil di tabel jika user adalah Admin */}
                 {userRole === "admin" && <th className="py-4 px-6">Nama Karyawan</th>}
                 <th className="py-4 px-6">Hari</th>
                 <th className="py-4 px-6">Tanggal</th>
@@ -334,7 +341,7 @@ export default function LemburPage() {
                 <th className="py-4 px-6 text-right">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-50 text-sm font-medium text-slate-700">
+            <tbody className="divide-y divide-slate-50 print:divide-slate-200 text-sm font-medium text-slate-700">
               {tableLoading ? (
                 <tr>
                   <td colSpan={userRole === "admin" ? 7 : 6} className="py-12 text-center text-slate-400">
@@ -355,17 +362,16 @@ export default function LemburPage() {
                     : `ID: ${item.KaryawanId}`;
 
                   return (
-                    <tr key={item.id} className="hover:bg-slate-50/40 transition-colors">
+                    <tr key={item.id} className="hover:bg-slate-50/40 transition-colors print:break-inside-avoid">
                       <td className="py-4 px-6 text-slate-400 font-mono">{indexOfFirstItem + index + 1}</td>
                       
-                      {/* 🌟 RENDERING KOLOM NAMA KARYAWAN (Khusus Admin) */}
                       {userRole === "admin" && (
                         <td className="py-4 px-6 font-bold text-slate-800">
                           <div className="flex items-center gap-2">
-                            <div className="p-1 bg-slate-100 rounded text-slate-600">
+                            <div className="p-1 bg-slate-100 rounded text-slate-600 print:hidden">
                               <User size={12} />
                             </div>
-                            <span className="truncate max-w-[150px]">{namaLengkap}</span>
+                            <span className="truncate max-w-[150px] print:max-w-none">{namaLengkap}</span>
                           </div>
                         </td>
                       )}
@@ -374,7 +380,7 @@ export default function LemburPage() {
                       <td className="py-4 px-6 text-slate-500 whitespace-nowrap">{formatTanggal(item.tanggal)}</td>
                       <td className="py-4 px-6 font-semibold whitespace-nowrap">{item.lamaJam} Jam</td>
                       
-                      <td className="py-4 px-6 text-xs text-slate-500 max-w-xs break-words font-normal">
+                      <td className="py-4 px-6 text-xs text-slate-500 max-w-xs break-words font-normal print:max-w-none">
                         {item.deskripsi || <span className="text-slate-300 italic">Tidak ada keterangan</span>}
                       </td>
 
@@ -387,9 +393,9 @@ export default function LemburPage() {
           </table>
         </div>
 
-        {/* PAGINATION PANEL */}
+        {/* PAGINATION PANEL - 🌟 PERUBAHAN: Disembunyikan saat print */}
         {filteredData.length > itemsPerPage && (
-          <div className="p-4 border-t border-slate-100 bg-slate-50/30 flex justify-between items-center">
+          <div className="p-4 border-t border-slate-100 bg-slate-50/30 flex justify-between items-center print:hidden">
             <span className="text-xs text-slate-400 font-medium">
               Menampilkan {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, filteredData.length)} dari {filteredData.length} data
             </span>
