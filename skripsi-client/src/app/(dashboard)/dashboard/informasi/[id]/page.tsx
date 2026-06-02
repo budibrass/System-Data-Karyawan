@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Calendar, Image as ImageIcon, FileText, AlertCircle } from "lucide-react";
+// 🌟 PERUBAHAN 1: Menambahkan Printer ke dalam import lucide-react
+import { ArrowLeft, Calendar, Image as ImageIcon, FileText, AlertCircle, Printer } from "lucide-react";
 import api from "@/lib/axios";
 import { useToastStore } from "@/store/useToastStore";
 
@@ -96,24 +97,37 @@ export default function InfoDetailPage() {
 
   // 5. RENDER UTAMA HALAMAN DETAIL
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-6 space-y-6">
+    // 🌟 PERUBAHAN 2: Tambahkan class print: agar menyesuaikan kertas
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 space-y-6 print:max-w-none print:p-0 print:m-0 print:space-y-4">
       
-      {/* TOMBOL NAVIGASI KEMBALI */}
-      <button 
-        onClick={() => router.back()}
-        className="group flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-slate-800 transition-colors cursor-pointer w-fit"
-      >
-        <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> 
-        Kembali ke Berita
-      </button>
+      {/* 🌟 PERUBAHAN 3: Membungkus tombol dengan div flex agar kiri (Kembali) dan kanan (Print) */}
+      <div className="flex justify-between items-center w-full print:hidden">
+        {/* TOMBOL NAVIGASI KEMBALI */}
+        <button 
+          onClick={() => router.back()}
+          className="group flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-slate-800 transition-colors cursor-pointer w-fit"
+        >
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> 
+          Kembali ke Berita
+        </button>
+
+        {/* TOMBOL PRINT */}
+        <button 
+          onClick={() => window.print()}
+          className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-colors shadow-sm cursor-pointer"
+        >
+          <Printer size={14} />
+          <span>Cetak PDF</span>
+        </button>
+      </div>
 
       {/* HEADER ARTIKEL */}
-      <div className="space-y-3 border-b border-slate-100 pb-5">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+      <div className="space-y-3 border-b border-slate-100 pb-5 print:border-slate-300">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight print:text-black">
           {info.judul || "Tanpa Judul"}
         </h1>
-        <div className="flex items-center gap-2 text-xs text-slate-400 font-semibold uppercase tracking-wider">
-          <Calendar size={14} className="text-slate-400" />
+        <div className="flex items-center gap-2 text-xs text-slate-400 font-semibold uppercase tracking-wider print:text-slate-600">
+          <Calendar size={14} className="text-slate-400 print:text-slate-600" />
           <span>
             {info.createdAt ? new Date(info.createdAt).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }) : "-"}
           </span>
@@ -122,22 +136,22 @@ export default function InfoDetailPage() {
 
       {/* BANNER FOTO / MEDIA LAMPIRAN */}
       {info.gambarInfo ? (
-        <div className="w-full max-h-[500px] rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 shadow-sm flex items-center justify-center">
+        <div className="w-full max-h-[500px] rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 shadow-sm flex items-center justify-center print:border-none print:shadow-none print:max-h-[400px]">
           <img 
             src={info.gambarInfo} 
             alt={info.judul || "Detail Gambar"} 
-            className="w-full h-full object-contain max-h-[500px]"
+            className="w-full h-full object-contain max-h-[500px] print:max-h-[400px]"
           />
         </div>
       ) : (
-        <div className="w-full h-40 rounded-2xl bg-slate-50 border border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 gap-2">
+        <div className="w-full h-40 rounded-2xl bg-slate-50 border border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 gap-2 print:hidden">
           <ImageIcon size={32} />
           <span className="text-xs font-medium">Tidak ada lampiran gambar pada pengumuman ini</span>
         </div>
       )}
 
       {/* KONTEN DESKRIPSI LENGKAP */}
-      <div className="bg-white p-2 rounded-2xl whitespace-pre-line text-sm sm:text-base text-slate-700 leading-relaxed font-normal antialiased">
+      <div className="bg-white p-2 rounded-2xl whitespace-pre-line text-sm sm:text-base text-slate-700 leading-relaxed font-normal antialiased print:p-0 print:text-black">
         {info.deskripsi || "Tidak ada deskripsi tersedia."}
       </div>
 
