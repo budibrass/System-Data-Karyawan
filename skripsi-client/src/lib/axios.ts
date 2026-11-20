@@ -2,8 +2,9 @@ import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000", 
+  // baseURL: "http://localhost:3000", 
   // baseURL: "https://skripsi-server-production-production.up.railway.app", 
+  baseURL: "https://system-data-karyawan.vercel.app", 
   headers: {
     "Content-Type": "application/json",
   },
