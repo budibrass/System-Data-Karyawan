@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Calendar, FileText, Send, CalendarDays, ChevronLeft, ChevronRight, CheckCircle2, Clock3, XCircle, Printer } from "lucide-react";
+import { Calendar, FileText, Send, CalendarDays, ChevronLeft, ChevronRight, CheckCircle2, Clock3, XCircle, Printer, Upload, ExternalLink } from "lucide-react";
 import api from "@/lib/axios";
 import { useToastStore } from "@/store/useToastStore";
 
@@ -11,6 +11,8 @@ export default function CutiPage() {
   const [mulaiTanggal, setMulaiTanggal] = useState("");
   const [sampaiTanggal, setSampaiTanggal] = useState("");
   const [alasan, setAlasan] = useState("");
+  const [fileBerkas, setFileBerkas] = useState<File | null>(null);
+  const [fileKey, setFileKey] = useState(0); // untuk reset input file
   const [submitLoading, setSubmitLoading] = useState(false);
 
   // --- STATE TABLE, FILTER & PAGINATION ---
@@ -84,26 +86,32 @@ export default function CutiPage() {
 
     try {
       setSubmitLoading(true);
-      
-      const payload = {
-        KaryawanId: Number(karyawanId),
-        mulaiTanggal: new Date(mulaiTanggal).toISOString(),
-        sampaiTanggal: new Date(sampaiTanggal).toISOString(),
-        alasan: alasan,
-        status: "menunggu konfirmasi"
-      };
 
-      await api.post("/cuti", payload);
+      const formData = new FormData();
+      formData.append("KaryawanId", String(karyawanId));
+      formData.append("mulaiTanggal", new Date(mulaiTanggal).toISOString());
+      formData.append("sampaiTanggal", new Date(sampaiTanggal).toISOString());
+      formData.append("alasan", alasan);
+      formData.append("status", "menunggu konfirmasi");
+      if (fileBerkas) {
+        formData.append("berkas", fileBerkas);
+      }
+
+      await api.post("/cuti", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       addToast("Pengajuan cuti berhasil dikirim!", "success");
       
       // Reset Form
       setMulaiTanggal("");
       setSampaiTanggal("");
       setAlasan("");
+      setFileBerkas(null);
+      setFileKey((k) => k + 1);
       
       fetchHistoryCuti();
-    } catch (error) {
-      addToast("Gagal mengirim pengajuan cuti.", "error");
+    } catch (error: any) {
+      addToast(error.response?.data?.msg || "Gagal mengirim pengajuan cuti.", "error");
     } finally {
       setSubmitLoading(false);
     }
@@ -271,6 +279,21 @@ export default function CutiPage() {
             </div>
           </div>
 
+          {/* Upload Berkas */}
+          <div className="space-y-2">
+            <label className="text-xs font-black text-slate-500 uppercase tracking-wider block">Upload Berkas Pendukung</label>
+            <div className="relative">
+              <Upload className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+              <input
+                key={fileKey}
+                type="file"
+                accept="image/*,application/pdf"
+                onChange={(e) => setFileBerkas(e.target.files?.[0] || null)}
+                className="w-full pl-12 pr-4 py-2.5 bg-slate-50 border border-slate-200/80 rounded-xl text-xs focus:bg-white focus:ring-4 focus:ring-blue-50 focus:border-blue-500 transition-all font-medium text-slate-500 file:mr-4 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-slate-200 file:text-slate-700 hover:file:bg-slate-300 cursor-pointer"
+              />
+            </div>
+          </div>
+
           {/* Button Submit */}
           <div className="flex justify-end">
             <button
@@ -331,6 +354,7 @@ export default function CutiPage() {
                 <th className="py-4 px-6">Tanggal Mulai</th>
                 <th className="py-4 px-6">Tanggal Akhir</th>
                 <th className="py-4 px-6">Alasan</th>
+                <th className="py-4 px-6">Berkas</th>
                 <th className="py-4 px-6">Status</th>
                 <th className="py-4 px-6 text-center w-24">Aksi</th>
               </tr>
@@ -338,14 +362,14 @@ export default function CutiPage() {
             <tbody className="divide-y divide-slate-50 text-sm font-medium text-slate-700">
               {tableLoading ? (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-slate-400">
+                  <td colSpan={8} className="py-12 text-center text-slate-400">
                     <div className="inline-block animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-slate-800 mr-2 align-middle"></div>
                     Memuat data cuti...
                   </td>
                 </tr>
               ) : currentItems.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-xs font-bold text-slate-400 uppercase tracking-widest">
+                  <td colSpan={8} className="py-12 text-center text-xs font-bold text-slate-400 uppercase tracking-widest">
                     Tidak ada riwayat pengajuan cuti di periode ini.
                   </td>
                 </tr>
@@ -357,6 +381,21 @@ export default function CutiPage() {
                     <td className="py-4 px-6 text-slate-600">{formatTanggal(item.mulaiTanggal)}</td>
                     <td className="py-4 px-6 text-slate-600">{formatTanggal(item.sampaiTanggal)}</td>
                     <td className="py-4 px-6 text-slate-500 max-w-xs truncate" title={item.alasan}>{item.alasan}</td>
+                    <td className="py-4 px-6">
+                      {item.imageUrl ? (
+                        <a
+                          href={item.imageUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold text-blue-600 bg-blue-50 rounded-md border border-blue-100 hover:bg-blue-100 transition-colors"
+                        >
+                          <ExternalLink size={13} />
+                          <span>Lihat Berkas</span>
+                        </a>
+                      ) : (
+                        <span className="text-slate-300 font-bold font-mono">-</span>
+                      )}
+                    </td>
                     <td className="py-4 px-6">{renderStatusBadge(item.status)}</td>
                     <td className="py-4 px-6 text-center">
                       <button

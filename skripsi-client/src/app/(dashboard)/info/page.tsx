@@ -160,7 +160,7 @@ export default function AdminInfoPage() {
                 placeholder="Tuliskan isi pengumuman secara detail dan jelas di sini..."
                 value={deskripsi}
                 onChange={(e) => setDeskripsi(e.target.value)}
-                className="w-full p-4 bg-slate-50 border border-slate-200/80 rounded-xl text-sm focus:bg-white focus:ring-4 focus:ring-indigo-50 focus:border-indigo-500 transition-all font-medium text-slate-800"
+                className="w-full p-4 whitespace-pre-line bg-slate-50 border border-slate-200/80 rounded-xl text-sm focus:bg-white focus:ring-4 focus:ring-indigo-50 focus:border-indigo-500 transition-all font-medium text-slate-800"
                 required
               ></textarea>
             </div>

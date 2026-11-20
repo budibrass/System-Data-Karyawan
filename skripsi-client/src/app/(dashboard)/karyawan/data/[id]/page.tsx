@@ -11,7 +11,8 @@ import {
   Phone,
   Mail,
   Building2,
-  Clock,
+  Download,
+  QrCode,
   ShieldCheck,
 } from "lucide-react";
 import api from "@/lib/axios";
@@ -23,6 +24,10 @@ export default function DetailKaryawanPage() {
   const addToast = useToastStore((state) => state.addToast);
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
+  // QR code karyawan: { id, nama, qrcode, image }
+  const [qr, setQr] = useState<any>(null);
+  const [qrLoading, setQrLoading] = useState(true);
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -39,6 +44,34 @@ export default function DetailKaryawanPage() {
     };
     fetchDetail();
   }, [id, addToast, router]);
+
+  useEffect(() => {
+    const fetchQr = async () => {
+      try {
+        setQrLoading(true);
+        const response = await api.get(`/karyawan/${id}/qrcode`);
+        setQr(response.data);
+      } catch (error: any) {
+        setQr(null);
+        addToast("Gagal memuat QR code karyawan", "error");
+      } finally {
+        setQrLoading(false);
+      }
+    };
+    if (id) fetchQr();
+  }, [id, addToast]);
+
+  const handleDownloadQr = () => {
+    if (!qr?.image) return;
+
+    const safeName = (qr.nama || `karyawan-${qr.id}`).replace(/\s+/g, "-").toLowerCase();
+    const link = document.createElement("a");
+    link.href = qr.image; // data:image/png;base64,...
+    link.download = `qrcode-${safeName}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   if (loading)
     return (
@@ -104,15 +137,12 @@ export default function DetailKaryawanPage() {
 
       {/* Main Identity Card */}
       <div className="bg-white p-8 rounded-[2.5rem] border border-rose-50 shadow-xl shadow-rose-50/50 flex flex-col md:flex-row items-center gap-10">
-        {/* <div className="w-40 h-40 rounded-[3rem] bg-rose-500 flex items-center justify-center text-white text-6xl font-black shadow-2xl shadow-rose-200">
-          {data?.namaDepan?.charAt(0)}
-        </div> */}
-        <div className="w-40 h-40 rounded-[3rem] bg-rose-500 flex items-center justify-center text-white text-6xl font-black shadow-2xl shadow-rose-200 overflow-hidden">
+        <div className="w-40 h-40 rounded-[3rem] bg-rose-500 flex items-center justify-center text-white text-6xl font-black shadow-2xl shadow-rose-200 overflow-hidden flex-shrink-0">
           {data?.fotoProfile ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img 
-              src={data.fotoProfile} 
-              alt={`Foto ${data?.namaDepan}`} 
+            <img
+              src={data.fotoProfile}
+              alt={`Foto ${data?.namaDepan}`}
               className="w-full h-full object-cover"
             />
           ) : (
@@ -136,18 +166,45 @@ export default function DetailKaryawanPage() {
             </div>
           </div>
         </div>
+
+        {/* QR Code Presensi */}
+        <div className="flex flex-col items-center gap-3 p-4 rounded-3xl bg-rose-50/40 border border-rose-100 flex-shrink-0">
+          <p className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-rose-400">
+            <QrCode size={14} /> QR Code Presensi
+          </p>
+
+          <div className="w-40 h-40 bg-white rounded-2xl border border-rose-100 shadow-sm flex items-center justify-center overflow-hidden">
+            {qrLoading ? (
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-rose-500"></div>
+            ) : qr?.image ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={qr.image}
+                alt={`QR Code ${data?.namaDepan}`}
+                className="w-full h-full object-contain"
+              />
+            ) : (
+              <span className="text-xs font-bold text-rose-300 text-center px-3">
+                QR code tidak tersedia
+              </span>
+            )}
+          </div>
+
+          <button
+            onClick={handleDownloadQr}
+            disabled={!qr?.image}
+            className="flex w-full cursor-pointer items-center justify-center gap-2 px-4 py-2.5 bg-rose-500 text-white rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-rose-600 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-rose-100/40 transition-all active:scale-95"
+          >
+            <Download size={14} />
+            <span>Download</span>
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-        {" "}
-        {/* Tambahkan items-stretch */}
         {/* Kolom 1: Personal */}
         <div className="flex flex-col h-full">
-          {" "}
-          {/* Tambahkan flex & h-full */}
           <div className="bg-white p-6 rounded-[2rem] border border-rose-50 shadow-lg shadow-rose-50/50 flex-1">
-            {" "}
-            {/* Tambahkan flex-1 */}
             <h3 className="text-xs font-black text-rose-950 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <User size={16} className="text-rose-500" /> Identitas Diri
             </h3>
@@ -183,13 +240,10 @@ export default function DetailKaryawanPage() {
             </div>
           </div>
         </div>
+
         {/* Kolom 2: Pekerjaan & Status */}
         <div className="flex flex-col h-full">
-          {" "}
-          {/* Tambahkan flex & h-full */}
           <div className="bg-white p-6 rounded-[2rem] border border-rose-50 shadow-lg shadow-rose-50/50 flex-1">
-            {" "}
-            {/* Tambahkan flex-1 */}
             <h3 className="text-xs font-black text-rose-950 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <Briefcase size={16} className="text-rose-500" /> Status Karir
             </h3>
@@ -236,10 +290,9 @@ export default function DetailKaryawanPage() {
             </div>
           </div>
         </div>
+
         {/* Kolom 3: Finansial & Golongan */}
         <div className="flex flex-col h-full gap-6">
-          {" "}
-          {/* Tambahkan flex, h-full & gap-6 */}
           {/* Benefit Card */}
           <div className="bg-rose-500 p-8 rounded-[2.5rem] text-white shadow-2xl shadow-rose-200 relative overflow-hidden group flex-1 flex flex-col justify-between">
             <div className="relative z-10 space-y-6">
@@ -276,8 +329,8 @@ export default function DetailKaryawanPage() {
                 Gaji Pokok
               </p>
               <p className="font-bold text-rose-50">
-                {data?.Gaji?.totalGaji 
-                  ? `Rp ${data.Gaji.gajiPokok.toLocaleString("id-ID")}` 
+                {data?.Gaji?.totalGaji
+                  ? `Rp ${data.Gaji.gajiPokok.toLocaleString("id-ID")}`
                   : "Belum ditentukan"}
               </p>
             </div>
@@ -286,6 +339,7 @@ export default function DetailKaryawanPage() {
               <ShieldCheck size={180} />
             </div>
           </div>
+
           {/* Riwayat Sistem */}
           <div className="bg-slate-50 p-6 rounded-4xl border border-slate-100">
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">

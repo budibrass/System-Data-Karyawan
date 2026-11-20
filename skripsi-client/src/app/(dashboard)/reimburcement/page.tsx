@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Calendar, Receipt, Send, CalendarDays, ChevronLeft, ChevronRight, CheckCircle2, Clock3, XCircle, FileText, Upload, ExternalLink } from "lucide-react";
+import { Calendar, Receipt, Send, CalendarDays, ChevronLeft, ChevronRight, CheckCircle2, Clock3, XCircle, FileText, Upload, ExternalLink, Printer } from "lucide-react";
 import api from "@/lib/axios";
 import { useToastStore } from "@/store/useToastStore";
 
@@ -150,20 +150,20 @@ export default function ReimbursementPage() {
     switch (status) {
       case "diterima":
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-emerald-700 bg-emerald-50 rounded-full border border-emerald-100">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-emerald-700 bg-emerald-50 rounded-full border border-emerald-100 whitespace-nowrap">
             <CheckCircle2 size={14} /> Diterima
           </span>
         );
       case "waitconfirm":
       case "menunggu konfirmasi":
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-amber-700 bg-amber-50 rounded-full border border-amber-100">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-amber-700 bg-amber-50 rounded-full border border-amber-100 whitespace-nowrap">
             <Clock3 size={14} /> Wait Confirm
           </span>
         );
       case "ditolak":
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-rose-700 bg-rose-50 rounded-full border border-rose-100">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-rose-700 bg-rose-50 rounded-full border border-rose-100 whitespace-nowrap">
             <XCircle size={14} /> Ditolak
           </span>
         );
@@ -172,11 +172,15 @@ export default function ReimbursementPage() {
     }
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
-    <div className="max-w-5xl mx-auto p-4 sm:p-6 space-y-8">
+    <div className="max-w-6xl mx-auto p-4 sm:p-6 space-y-8">
       
       {/* CARD 1: FORM PENGAJUAN REIMBURSEMENT */}
-      <div className="bg-white border border-slate-100 rounded-3xl shadow-xl shadow-slate-100/50 p-6 sm:p-8">
+      <div className="print:hidden bg-white border border-slate-100 rounded-3xl shadow-xl shadow-slate-100/50 p-6 sm:p-8">
         <div className="flex items-center gap-3 border-b border-slate-100 pb-4 mb-6">
           <div className="p-2.5 bg-amber-50 text-amber-600 rounded-xl">
             <Receipt size={22} className="stroke-[2.5]" />
@@ -254,7 +258,7 @@ export default function ReimbursementPage() {
             <button
               type="submit"
               disabled={submitLoading}
-              className="w-full sm:w-auto px-6 py-3.5 bg-slate-900 text-white font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-slate-800 transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full sm:w-auto px-6 py-3.5 bg-slate-900 text-white font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-slate-800 transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
             >
               <Send size={14} />
               <span>{submitLoading ? "Mengirim..." : "Ajukan Klaim"}</span>
@@ -269,15 +273,15 @@ export default function ReimbursementPage() {
         {/* NAVBAR FILTER */}
         <div className="p-6 border-b border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex items-center gap-2">
-            <CalendarDays size={18} className="text-slate-500" />
+            <CalendarDays size={18} className="text-slate-500 print:hidden" />
             <h3 className="text-sm font-black text-slate-800 uppercase tracking-wide">Riwayat Klaim Reimbursement</h3>
           </div>
           
-          <div className="flex gap-3 w-full sm:w-auto">
+          <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
             <select
               value={filterBulan}
               onChange={(e) => setFilterBulan(e.target.value === "" ? "" : Number(e.target.value))}
-              className="px-3 py-2 bg-white border border-slate-200 text-xs font-bold rounded-lg text-slate-700 focus:ring-2 focus:ring-amber-500/20"
+              className="print:hidden px-3 py-2 bg-white border border-slate-200 text-xs font-bold rounded-xl text-slate-700 focus:ring-2 focus:ring-amber-500/20"
             >
               <option value="">Semua Bulan</option>
               {Array.from({ length: 12 }, (_, i) => (
@@ -290,12 +294,21 @@ export default function ReimbursementPage() {
             <select
               value={filterTahun}
               onChange={(e) => setFilterTahun(e.target.value === "" ? "" : Number(e.target.value))}
-              className="px-3 py-2 bg-white border border-slate-200 text-xs font-bold rounded-lg text-slate-700 focus:ring-2 focus:ring-amber-500/20"
+              className="print:hidden px-3 py-2 bg-white border border-slate-200 text-xs font-bold rounded-xl text-slate-700 focus:ring-2 focus:ring-amber-500/20"
             >
               <option value="">Semua Tahun</option>
               <option value={tahunSekarang}>{tahunSekarang}</option>
               <option value={tahunLalu}>{tahunLalu}</option>
             </select>
+
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="print:hidden flex items-center gap-1.5 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-all cursor-pointer shadow-sm shrink-0 h-[34px]"
+            >
+              <Printer size={14} />
+              <span className="hidden xs:inline">Cetak Data</span>
+            </button>
           </div>
         </div>
 
@@ -304,16 +317,15 @@ export default function ReimbursementPage() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-slate-100 text-slate-400 text-[11px] font-black uppercase tracking-wider bg-slate-50/20">
-                <th className="py-4 px-6 w-12">No</th>
-                <th className="py-4 px-6">Tanggal</th>
-                <th className="py-4 px-6">Nama Reimbursement</th>
-                <th className="py-4 px-6">Jumlah</th>
-                {/* 🌟 KOLOM BARU UNTUK UNGGAHAN BERKAS */}
-                <th className="py-4 px-6">Berkas Nota</th>
-                <th className="py-4 px-6 text-right">Status</th>
+                <th className="py-4 px-6 print:px-2 w-12">No</th>
+                <th className="py-4 px-6 print:px-2">Tanggal</th>
+                <th className="py-4 px-6 print:px-2">Nama Reimbursement</th>
+                <th className="py-4 px-6 print:px-2">Jumlah</th>
+                <th className="py-4 px-6 print:hidden">Berkas Nota</th>
+                <th className="py-4 px-6 print:px-2 text-right">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-50 text-sm font-medium text-slate-700">
+            <tbody className="divide-y divide-slate-50 text-sm print:text-xs font-medium text-slate-700">
               {tableLoading ? (
                 <tr>
                   <td colSpan={6} className="py-12 text-center text-slate-400">
@@ -328,18 +340,14 @@ export default function ReimbursementPage() {
                   </td>
                 </tr>
               ) : (
-                currentItems.map((item, index) => {
-                  console.log(item, `<<< item`);
-                  
-                  return (
+                currentItems.map((item, index) => (
                   <tr key={item.id} className="hover:bg-slate-50/40 transition-colors">
-                    <td className="py-4 px-6 text-slate-400 font-mono">{indexOfFirstItem + index + 1}</td>
-                    <td className="py-4 px-6 text-slate-600">{formatTanggal(item.tanggal)}</td>
-                    <td className="py-4 px-6 font-bold text-slate-800">{item.namaReimbursement}</td>
-                    <td className="py-4 px-6 font-semibold text-slate-900">{formatRupiah(item.jumlah)}</td>
+                    <td className="py-4 px-6 print:px-2 text-slate-400 font-mono">{indexOfFirstItem + index + 1}</td>
+                    <td className="py-4 px-6 print:px-2 text-slate-600 whitespace-nowrap">{formatTanggal(item.tanggal)}</td>
+                    <td className="py-4 px-6 print:px-2 font-bold text-slate-800">{item.namaReimbursement}</td>
+                    <td className="py-4 px-6 print:px-2 font-semibold text-slate-900 whitespace-nowrap">{formatRupiah(item.jumlah)}</td>
                     
-                    {/* 🌟 CELL DARI KOLOM BERKAS NOTA YANG BISA DIKLIK */}
-                    <td className="py-4 px-6">
+                    <td className="py-4 px-6 print:hidden">
                       {item.imageUrl ? (
                         <a
                           href={item.imageUrl}
@@ -355,10 +363,9 @@ export default function ReimbursementPage() {
                       )}
                     </td>
 
-                    <td className="py-4 px-6 text-right">{renderStatusBadge(item.status)}</td>
+                    <td className="py-4 px-6 print:px-2 text-right">{renderStatusBadge(item.status)}</td>
                   </tr>
-                )
-                })
+                ))
               )}
             </tbody>
           </table>
@@ -366,7 +373,7 @@ export default function ReimbursementPage() {
 
         {/* PAGINATION PANEL */}
         {filteredData.length > itemsPerPage && (
-          <div className="p-4 border-t border-slate-100 bg-slate-50/30 flex justify-between items-center">
+          <div className="p-4 border-t border-slate-100 bg-slate-50/30 flex justify-between items-center print:hidden">
             <span className="text-xs text-slate-400 font-medium">
               Menampilkan {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, filteredData.length)} dari {filteredData.length} data
             </span>
@@ -375,7 +382,7 @@ export default function ReimbursementPage() {
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-                className="p-1.5 border border-slate-200 rounded-lg bg-white hover:bg-slate-50 disabled:opacity-40 transition-all text-slate-600"
+                className="p-1.5 border border-slate-200 rounded-lg bg-white hover:bg-slate-50 disabled:opacity-40 transition-all text-slate-600 cursor-pointer"
               >
                 <ChevronLeft size={16} />
               </button>
@@ -387,7 +394,7 @@ export default function ReimbursementPage() {
               <button
                 onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className="p-1.5 border border-slate-200 rounded-lg bg-white hover:bg-slate-50 disabled:opacity-40 transition-all text-slate-600"
+                className="p-1.5 border border-slate-200 rounded-lg bg-white hover:bg-slate-50 disabled:opacity-40 transition-all text-slate-600 cursor-pointer"
               >
                 <ChevronRight size={16} />
               </button>

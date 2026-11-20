@@ -25,6 +25,7 @@ interface CutiItem {
   mulaiTanggal: string;
   sampaiTanggal: string;
   alasan: string;
+  imageUrl?: string; // 🌟 Berkas bukti dari halaman cuti
   status: string;
   Karyawan?: KaryawanDetail;
 }
@@ -222,6 +223,7 @@ export default function PengajuanPage() {
         mulaiTanggal: item.mulaiTanggal,
         sampaiTanggal: item.sampaiTanggal,
         alasan: item.alasan,
+        imageUrl: item.imageUrl, // 🌟 Supaya berkas tidak hilang saat status diubah
         status: newStatus,
       };
 
@@ -470,6 +472,8 @@ export default function PengajuanPage() {
                     <th className="py-4 px-6">Mulai Tanggal</th>
                     <th className="py-4 px-6">Sampai Tanggal</th>
                     <th className="py-4 px-6">Alasan</th>
+                    {/* 🌟 KOLOM BUKTI BERKAS CUTI */}
+                    <th className="py-4 px-6 text-center">Bukti</th>
                     <th className="py-4 px-6 text-center w-48">Aksi</th>
                   </tr>
                 </thead>
@@ -495,6 +499,22 @@ export default function PengajuanPage() {
                         </td>
                         <td className="py-4 px-6 text-slate-500 italic max-w-xs truncate" title={item.alasan}>
                           "{item.alasan}"
+                        </td>
+                        {/* 🌟 TD BUKTI BERKAS CUTI (buka PDF/gambar di tab baru) */}
+                        <td className="py-4 px-6 text-center">
+                          {item.imageUrl ? (
+                            <a
+                              href={item.imageUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all shadow-xs truncate"
+                            >
+                              <Eye size={14} />
+                              <span>Lihat Bukti</span>
+                            </a>
+                          ) : (
+                            <span className="text-xs text-slate-400 italic font-normal">Tidak ada file</span>
+                          )}
                         </td>
                         <td className="py-4 px-6">
                           <div className="flex items-center justify-center gap-2">
@@ -646,7 +666,6 @@ export default function PengajuanPage() {
                               disabled={actionReimbursementLoadingId !== null}
                               className="flex items-center gap-1 px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold shadow-md shadow-rose-100 transition-all cursor-pointer disabled:opacity-50"
                             >
-                              {/* 🌟 Perbaikan bug kecil: Mengganti actionLemburLoadingId menjadi actionReimbursementLoadingId */}
                               {actionReimbursementLoadingId === item.id ? <Loader2 size={14} className="animate-spin" /> : <X size={14} />}
                               <span>Tolak</span>
                             </button>

@@ -2,9 +2,8 @@ import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 
 const api = axios.create({
-  // Sesuaikan dengan port BE kamu (3000)
-  // baseURL: "http://localhost:3000", 
-  baseURL: "https://skripsi-server-production-production.up.railway.app", 
+  baseURL: "http://localhost:3000", 
+  // baseURL: "https://skripsi-server-production-production.up.railway.app", 
   headers: {
     "Content-Type": "application/json",
   },

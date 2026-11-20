@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Save, Camera, User } from "lucide-react";
+import { ArrowLeft, Save, Camera, User, QrCode, Download } from "lucide-react";
 import api from "@/lib/axios";
 import { useToastStore } from "@/store/useToastStore";
 import { useAuthStore } from "@/store/useAuthStore";
@@ -18,6 +18,10 @@ export default function EditKaryawanPage() {
   // State khusus menampung file gambar baru & preview lokal
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
+
+  // State QR Code Presensi
+  const [qr, setQr] = useState<any>(null);
+  const [qrLoading, setQrLoading] = useState(true);
 
   // State Form disesuaikan dengan field dari database
   const [formData, setFormData] = useState({
@@ -39,7 +43,7 @@ export default function EditKaryawanPage() {
     jumlahTanggunganAnak: 0,
     GolonganId: "",
     ProjectId: "",
-    fotoProfile: "" // 🌟 Ditambahkan untuk menampung URL foto lama dari database
+    fotoProfile: "" // Ditambahkan untuk menampung URL foto lama dari database
   });
 
   // State untuk dropdown options
@@ -82,7 +86,7 @@ export default function EditKaryawanPage() {
           fotoProfile: emp.fotoProfile || ""
         });
 
-        // 🌟 Set preview awal menggunakan foto dari database jika tersedia
+        // Set preview awal menggunakan foto dari database jika tersedia
         if (emp.fotoProfile) {
           setPreviewUrl(emp.fotoProfile);
         }
@@ -98,6 +102,35 @@ export default function EditKaryawanPage() {
     fetchInitialData();
   }, [id, router, addToast]);
 
+  // Fetch QR Code Karyawan
+  useEffect(() => {
+    const fetchQr = async () => {
+      try {
+        setQrLoading(true);
+        const response = await api.get(`/karyawan/${id}/qrcode`);
+        setQr(response.data);
+      } catch (error: any) {
+        setQr(null);
+        addToast("Gagal memuat QR code karyawan", "error");
+      } finally {
+        setQrLoading(false);
+      }
+    };
+    if (id) fetchQr();
+  }, [id, addToast]);
+
+  const handleDownloadQr = () => {
+    if (!qr?.image) return;
+
+    const safeName = (qr.nama || `karyawan-${qr.id}`).replace(/\s+/g, "-").toLowerCase();
+    const link = document.createElement("a");
+    link.href = qr.image; // data:image/png;base64,...
+    link.download = `qrcode-${safeName}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -108,7 +141,7 @@ export default function EditKaryawanPage() {
     }));
   };
 
-  // 🌟 Handler saat user memilih file gambar baru
+  // Handler saat user memilih file gambar baru
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -119,52 +152,43 @@ export default function EditKaryawanPage() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  try {
-    setSubmitting(true);
+    e.preventDefault();
+    try {
+      setSubmitting(true);
 
-    const dataPayload = new FormData();
-    
-    // 1. Masukkan semua data dari state formData ke dalam FormData payload
-    Object.entries(formData).forEach(([key, value]) => {
-      // Kita kirimkan saja semua datanya (baik kosong ataupun berisi)
-      // Biarkan Backend yang menentukan apakah akan memakai data baru atau mempertahankan data lama di DB
-      if (value !== null && value !== undefined) {
-        dataPayload.append(key, String(value));
+      const dataPayload = new FormData();
+      
+      // 1. Masukkan semua data dari state formData ke dalam FormData payload
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value !== null && value !== undefined) {
+          dataPayload.append(key, String(value));
+        }
+      });
+
+      // 2. Jika user mengunggah foto baru, lampirkan ke FormData
+      if (selectedFile) {
+        dataPayload.append("fotoProfile", selectedFile);
       }
-    });
 
-    // 2. Jika user mengunggah foto baru, lampirkan ke FormData
-    if (selectedFile) {
-      dataPayload.append("fotoProfile", selectedFile);
+      // 3. Kirim via PUT ke Backend
+      await api.put(`/karyawan/${id}`, dataPayload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      addToast("Data karyawan berhasil diperbarui", "success");
+      
+      // Segarkan router client agar halaman list data ter-fetch ulang datanya
+      router.refresh(); 
+      router.push("/karyawan/data");
+    } catch (error: any) {
+      const message = error.response?.data?.message || "Gagal memperbarui data";
+      addToast(message, "error");
+    } finally {
+      setSubmitting(false);
     }
-
-    // 🌟 3. CARA CEK LOG (Silakan cek di console inspect browser Anda dengan cara ini)
-    console.log("--- ISI FORMDATA YANG DIKIRIM ---");
-    for (let [key, value] of dataPayload.entries()) {
-      console.log(`${key} ->`, value);
-    }
-    console.log("---------------------------------");
-
-    // 4. Kirim via PUT ke Backend
-    await api.put(`/karyawan/${id}`, dataPayload, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    addToast("Data karyawan berhasil diperbarui", "success");
-    
-    // Segarkan router client agar halaman list data ter-fetch ulang datanya
-    router.refresh(); 
-    router.push("/karyawan/data");
-  } catch (error: any) {
-    const message = error.response?.data?.message || "Gagal memperbarui data";
-    addToast(message, "error");
-  } finally {
-    setSubmitting(false);
-  }
-};
+  };
 
   if (loading) return (
     <div className="flex h-[60vh] items-center justify-center">
@@ -196,52 +220,88 @@ export default function EditKaryawanPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">NIP</label>
-                <input type="text" name="nip" disabled={role === "admin" ? false : true} value={formData.nip} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
+                <input type="text" name="nip" disabled={role === "admin" ? false : true} value={formData.nip} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium disabled:opacity-60" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Jabatan</label>
-                <input type="text" name="jabatan" disabled={role === "admin" ? false : true} value={formData.jabatan} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
+                <input type="text" name="jabatan" disabled={role === "admin" ? false : true} value={formData.jabatan} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium disabled:opacity-60" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Email</label>
-                <input type="email" name="email" disabled={role === "admin" ? false : true} value={formData.email} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
+                <input type="email" name="email" disabled={role === "admin" ? false : true} value={formData.email} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium disabled:opacity-60" />
               </div>
             </div>
           </div>
 
-          {/* Section 2: Profil Pribadi */}
+          {/* Section 2: Profil Pribadi & QR Code Presensi */}
           <div>
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-rose-400 mb-6 border-b border-rose-50 pb-2">II. Profil Pribadi</h3>
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-rose-400 mb-6 border-b border-rose-50 pb-2">II. Profil Pribadi & Akses Presensi</h3>
             
-            {/* 🌟 INPUT COMPONENT UPLOAD FOTO PROFILE */}
-            <div className="flex flex-col sm:flex-row items-center gap-6 mb-8 bg-rose-50/10 p-5 rounded-3xl border border-rose-50/50">
-              <div className="relative group w-24 h-24 rounded-full bg-rose-50 border-2 border-rose-100 shadow-sm overflow-hidden flex items-center justify-center flex-shrink-0">
-                {previewUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={previewUrl} alt="Preview Avatar" className="w-full h-full object-cover" />
-                ) : (
-                  <User size={36} className="text-rose-200" />
-                )}
-                <label htmlFor="fotoProfilePicker" className="absolute inset-0 bg-black/40 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                  <Camera size={18} />
-                </label>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {/* Input Component Upload Foto Profile */}
+              <div className="md:col-span-2 flex flex-col sm:flex-row items-center gap-6 bg-rose-50/10 p-5 rounded-3xl border border-rose-50/50">
+                <div className="relative group w-24 h-24 rounded-full bg-rose-50 border-2 border-rose-100 shadow-sm overflow-hidden flex items-center justify-center flex-shrink-0">
+                  {previewUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={previewUrl} alt="Preview Avatar" className="w-full h-full object-cover" />
+                  ) : (
+                    <User size={36} className="text-rose-200" />
+                  )}
+                  <label htmlFor="fotoProfilePicker" className="absolute inset-0 bg-black/40 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                    <Camera size={18} />
+                  </label>
+                </div>
+                <div className="text-center sm:text-left space-y-1">
+                  <h4 className="text-sm font-bold text-rose-950">Foto Profil Karyawan</h4>
+                  <p className="text-xs text-rose-400/80 font-medium mb-2">Format dokumen gambar JPG, JPEG, atau PNG. Maksimal 2MB.</p>
+                  <input 
+                    type="file" 
+                    id="fotoProfilePicker" 
+                    accept="image/*" 
+                    onChange={handleFileChange} 
+                    className="hidden" 
+                  />
+                  <label 
+                    htmlFor="fotoProfilePicker" 
+                    className="inline-block px-4 py-2 bg-white border border-rose-200 hover:bg-rose-50 text-rose-600 rounded-xl text-xs font-bold shadow-sm transition-all cursor-pointer"
+                  >
+                    Pilih Gambar Baru
+                  </label>
+                </div>
               </div>
-              <div className="text-center sm:text-left space-y-1">
-                <h4 className="text-sm font-bold text-rose-950">Foto Profil Karyawan</h4>
-                <p className="text-xs text-rose-400/80 font-medium mb-2">Format dokumen gambar JPG, JPEG, atau PNG. Maksimal 2MB.</p>
-                <input 
-                  type="file" 
-                  id="fotoProfilePicker" 
-                  accept="image/*" 
-                  onChange={handleFileChange} 
-                  className="hidden" 
-                />
-                <label 
-                  htmlFor="fotoProfilePicker" 
-                  className="inline-block px-4 py-2 bg-white border border-rose-200 hover:bg-rose-50 text-rose-600 rounded-xl text-xs font-bold shadow-sm transition-all cursor-pointer"
+
+              {/* QR Code Presensi Card */}
+              <div className="flex flex-col items-center justify-center gap-3 p-4 rounded-3xl bg-rose-50/40 border border-rose-100">
+                <p className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-rose-400">
+                  <QrCode size={14} /> QR Code Presensi
+                </p>
+
+                <div className="w-28 h-28 bg-white rounded-2xl border border-rose-100 shadow-sm flex items-center justify-center overflow-hidden">
+                  {qrLoading ? (
+                    <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-rose-500"></div>
+                  ) : qr?.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={qr.image}
+                      alt={`QR Code ${formData.namaDepan}`}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-[10px] font-bold text-rose-300 text-center px-2">
+                      Tidak tersedia
+                    </span>
+                  )}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleDownloadQr}
+                  disabled={!qr?.image}
+                  className="flex w-full cursor-pointer items-center justify-center gap-2 px-3 py-2 bg-rose-500 text-white rounded-xl text-[11px] font-bold uppercase tracking-widest hover:bg-rose-600 disabled:opacity-40 disabled:cursor-not-allowed shadow-md shadow-rose-100/40 transition-all active:scale-95"
                 >
-                  Pilih Gambar Baru
-                </label>
+                  <Download size={13} />
+                  <span>Download QR</span>
+                </button>
               </div>
             </div>
 
@@ -267,7 +327,7 @@ export default function EditKaryawanPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-rose-900/80">Jenis Kelamin</label>
-                  <select name="jenisKelamin" disabled={role === "admin" ? false : true} value={formData.jenisKelamin} onChange={handleChange} className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
+                  <select name="jenisKelamin" disabled={role === "admin" ? false : true} value={formData.jenisKelamin} onChange={handleChange} className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700 disabled:opacity-60">
                     <option value="L">Laki-Laki</option>
                     <option value="P">Perempuan</option>
                   </select>
@@ -310,7 +370,7 @@ export default function EditKaryawanPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Golongan Pegawai</label>
-                <select name="GolonganId" disabled={role === "admin" ? false : true} value={formData.GolonganId} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
+                <select name="GolonganId" disabled={role === "admin" ? false : true} value={formData.GolonganId} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700 disabled:opacity-60">
                   <option value="">Pilih Golongan</option>
                   {golonganOptions.map((gol) => (
                     <option key={gol.id} value={gol.id}>{gol.namaGolongan}</option>
@@ -319,7 +379,7 @@ export default function EditKaryawanPage() {
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Penempatan Project</label>
-                <select name="ProjectId" disabled={role === "admin" ? false : true} value={formData.ProjectId} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
+                <select name="ProjectId" disabled={role === "admin" ? false : true} value={formData.ProjectId} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700 disabled:opacity-60">
                   <option value="">Pilih Project</option>
                   {projectOptions.map((proj) => (
                     <option key={proj.id} value={proj.id}>{proj.nama}</option>
@@ -328,11 +388,11 @@ export default function EditKaryawanPage() {
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Tanggal Masuk Kerja</label>
-                <input type="date" name="tanggalMasuk" disabled={role === "admin" ? false : true} value={formData.tanggalMasuk} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium" />
+                <input type="date" name="tanggalMasuk" disabled={role === "admin" ? false : true} value={formData.tanggalMasuk} onChange={handleChange} required className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-medium disabled:opacity-60" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-rose-900/80">Status Kerja</label>
-                <select name="statusKerja" disabled={role === "admin" ? false : true} value={formData.statusKerja} onChange={handleChange} className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700">
+                <select name="statusKerja" disabled={role === "admin" ? false : true} value={formData.statusKerja} onChange={handleChange} className="w-full h-11 px-4 text-sm bg-rose-50/30 border border-rose-100 rounded-xl outline-none focus:ring-2 focus:ring-rose-200 font-bold text-slate-700 disabled:opacity-60">
                   <option value="WFO">WFO (Work From Office)</option>
                   <option value="WFH">WFH (Work From Home)</option>
                 </select>
