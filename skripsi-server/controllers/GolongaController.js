@@ -66,41 +66,20 @@ class GolongaController {
       });
   }
 
-  // static async editGolongan(req, res, next) {
-  //   try {
-  //     let id = req.params.id;
-  //     let obj = {
-  //       kodeGolongan: req.body.kodeGolongan,
-  //       namaGolongan: req.body.namaGolongan,
-  //       uangTransportasi: req.body.uangTransportasi,
-  //       uangSkill: req.body.uangSkill
-  //     };
-
-  //     const data = await Golongan.update(obj, { where: { id } });
-  //     if (data) res.status(201).json({ msg: `data berhasil diubah` });
-  //   } catch (error) {
-  //     res.status(500).json({
-  //       message: error.errors?.[0]?.message || error.msg || "Internal Server Error"
-  //     });
-  //   }
-  // }
   static async editGolongan(req, res, next) {
   try {
     let id = req.params.id;
     let obj = {
       kodeGolongan: req.body.kodeGolongan,
       namaGolongan: req.body.namaGolongan,
-      uangTransportasi: req.body.uangTransportasi, // [DIUBAH] sebelumnya uangTunjangan
-      uangSkill: req.body.uangSkill                // [DIUBAH] sebelumnya uangLembur
+      uangTransportasi: req.body.uangTransportasi,
+      uangSkill: req.body.uangSkill
     };
 
-    // [DIUBAH] update() mengembalikan array [jumlahBarisTerubah], jadi kondisi lama
-    // "if (data)" selalu true. Sekarang dicek jumlah barisnya.
     const [updatedRows] = await Golongan.update(obj, { where: { id } });
     if (updatedRows > 0) {
-      res.status(200).json({ msg: `data berhasil diubah` }); // [DIUBAH] 201 -> 200 (ini update, bukan create)
+      res.status(200).json({ msg: `data berhasil diubah` });
     } else {
-      // [DITAMBAH] sebelumnya tidak ada respons sama sekali bila id tidak ditemukan (request menggantung)
       res.status(404).json({ message: "Data golongan tidak ditemukan" });
     }
   } catch (error) {

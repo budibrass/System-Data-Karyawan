@@ -1,4 +1,5 @@
 const { Reimbursement, Karyawan } = require("../models");
+const uploadToSupabase = require("../helpers/supabaseUpload");
 
 class ReimbursementController {
   static getReimbursement(req, res, next) {
@@ -38,49 +39,106 @@ class ReimbursementController {
       });
   }
 
-  static addReimbursement(req, res, next) {
-    let imagePath = "";
-    if (req.file) {
-        imagePath = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-    }
+//   static addReimbursement(req, res, next) {
+//     let imagePath = "";
+//     if (req.file) {
+//         imagePath = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+//     }
 
-    let body = {
+//     let body = {
+//         KaryawanId: req.body.KaryawanId,
+//         tanggal: req.body.tanggal,
+//         namaReimbursement: req.body.namaReimbursement,
+//         jumlah: req.body.jumlah,
+//         imageUrl: imagePath,
+//         status: req.body.status
+//     };
+
+//     Reimbursement.create(body)
+//       .then((data) => {
+//         res.status(201).json({
+//           msg: `selamat data telah berhasil ditambahkan`,
+//           data
+//         });
+//       })
+//       .catch((err) => {
+//         res.status(500).json({ message: "Internal Server Error" });
+//       });
+// }
+
+  // static async editReimbursement(req, res, next) {
+  //   try {
+  //     let id = req.params.id;
+  //     let obj = {
+  //       KaryawanId: req.body.KaryawanId,
+  //       tanggal: req.body.tanggal,
+  //       namaReimbursement: req.body.namaReimbursement,
+  //       jumlah: req.body.jumlah,
+  //       status: req.body.status,
+  //       imageUrl: req.body.imageUrl,
+  //     };
+
+  //     const data = await Reimbursement.update(obj, { where: { id } });
+  //     if (data) res.status(201).json({ msg: `data berhasil diubah` });
+  //   } catch (error) {
+  //     res.status(500).json({ message: "Internal server error" });
+  //   }
+  // }
+
+  static async addReimbursement(req, res, next) {
+    try {
+      let imagePath = "";
+      if (req.file) {
+        imagePath = await uploadToSupabase(req.file);
+      }
+
+      let body = {
         KaryawanId: req.body.KaryawanId,
         tanggal: req.body.tanggal,
         namaReimbursement: req.body.namaReimbursement,
         jumlah: req.body.jumlah,
         imageUrl: imagePath,
         status: req.body.status
-    };
+      };
 
-    Reimbursement.create(body)
-      .then((data) => {
-        res.status(201).json({
-          msg: `selamat data telah berhasil ditambahkan`,
-          data
-        });
-      })
-      .catch((err) => {
-        res.status(500).json({ message: "Internal Server Error" });
+      const data = await Reimbursement.create(body);
+      res.status(201).json({
+        msg: `selamat data telah berhasil ditambahkan`,
+        data
       });
-}
+    } catch (err) {
+      res.status(500).json({
+        message: "Internal Server Error",
+        error: err.message || err
+      });
+    }
+  }
 
   static async editReimbursement(req, res, next) {
     try {
       let id = req.params.id;
+
+      let imagePath = req.body.imageUrl;
+      if (req.file) {
+        imagePath = await uploadToSupabase(req.file);
+      }
+
       let obj = {
         KaryawanId: req.body.KaryawanId,
         tanggal: req.body.tanggal,
         namaReimbursement: req.body.namaReimbursement,
         jumlah: req.body.jumlah,
         status: req.body.status,
-        imageUrl: req.body.imageUrl,
+        imageUrl: imagePath,
       };
 
       const data = await Reimbursement.update(obj, { where: { id } });
       if (data) res.status(201).json({ msg: `data berhasil diubah` });
     } catch (error) {
-      res.status(500).json({ message: "Internal server error" });
+      res.status(500).json({
+        message: "Internal server error",
+        error: error.message || error
+      });
     }
   }
 

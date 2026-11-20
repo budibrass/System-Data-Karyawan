@@ -86,15 +86,13 @@ static async editProject(req, res, next) {
       let id = req.params.id;
       let obj = {
         nama: req.body.nama,
-        projectManager: req.body.projectManager, // [DIUBAH] sebelumnya req.body.productManager
+        projectManager: req.body.projectManager,
       };
 
-      // [DIUBAH] update() mengembalikan array [jumlahBarisTerubah], jadi cek jumlah barisnya
       const [updatedRows] = await Project.update(obj, { where: { id } });
       if (updatedRows > 0) {
-        res.status(200).json({ msg: `data berhasil diubah` }); // [DIUBAH] 201 -> 200
+        res.status(200).json({ msg: `data berhasil diubah` }); 
       } else {
-        // [DITAMBAH] sebelumnya request menggantung kalau id tidak ditemukan
         res.status(404).json({ message: "Data project tidak ditemukan" });
       }
     } catch (error) {

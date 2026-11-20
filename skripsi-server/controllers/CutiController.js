@@ -1,4 +1,5 @@
 const { Cuti, Karyawan } = require("../models");
+const uploadToSupabase = require("../helpers/supabaseUpload");
 
 class CutiController {
   static getCuti(req, res, next) {
@@ -45,62 +46,128 @@ class CutiController {
       });
   }
 
-  static addCuti(req, res, next) {
-    let imagePath = "";
-    if (req.file) {
-        imagePath = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-    }
+  // UPLOAD BERKAS KE LOCAL
+  // static addCuti(req, res, next) {
+  //   let imagePath = "";
+  //   if (req.file) {
+  //       imagePath = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+  //   }
 
-    let body = {
+  //   let body = {
+  //       KaryawanId: req.body.KaryawanId,
+  //       mulaiTanggal: req.body.mulaiTanggal,
+  //       sampaiTanggal: req.body.sampaiTanggal,
+  //       imageUrl: imagePath,
+  //       alasan: req.body.alasan,
+  //       status: req.body.status
+  //   };
+
+  //   Cuti.create(body)
+  //     .then((data) => {
+  //       res.status(201).json({
+  //         msg: `selamat data telah berhasil ditambahkan`,
+  //         data
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       res.status(400).json({ 
+  //         message: "Gagal menambahkan data cuti", 
+  //         error: err.message || err 
+  //       });
+  //     });
+  // }
+
+  // static async editGaji(req, res, next) {
+  //   try {
+  //     let id = req.params.id;
+  //     let obj = {
+  //       KaryawanId: req.body.KaryawanId,
+  //       mulaiTanggal: req.body.mulaiTanggal,
+  //       sampaiTanggal: req.body.sampaiTanggal,
+  //       imageUrl: req.body.imageUrl,
+  //       alasan: req.body.alasan,
+  //       status: req.body.status
+  //     };
+
+  //     const [updatedRows] = await Cuti.update(obj, { where: { id } });
+      
+  //     if (updatedRows === 0) {
+  //       return res.status(444).json({ message: "Data tidak ditemukan atau tidak ada perubahan" });
+  //     }
+      
+  //     res.status(200).json({ msg: `data berhasil diubah` });
+  //   } catch (error) {
+  //     res.status(500).json({ 
+  //       message: "Gagal memperbarui data cuti", 
+  //       error: error.message || error 
+  //     });
+  //   }
+  // }
+
+  // UPLOAD BERKAS KE SUPABASE
+  static async addCuti(req, res, next) {
+    try {
+      let imagePath = "";
+      if (req.file) {
+        imagePath = await uploadToSupabase(req.file);
+      }
+
+      let body = {
         KaryawanId: req.body.KaryawanId,
         mulaiTanggal: req.body.mulaiTanggal,
         sampaiTanggal: req.body.sampaiTanggal,
         imageUrl: imagePath,
         alasan: req.body.alasan,
         status: req.body.status
-    };
+      };
 
-    Cuti.create(body)
-      .then((data) => {
-        res.status(201).json({
-          msg: `selamat data telah berhasil ditambahkan`,
-          data
-        });
-      })
-      .catch((err) => {
-        res.status(400).json({ 
-          message: "Gagal menambahkan data cuti", 
-          error: err.message || err 
-        });
+      const data = await Cuti.create(body);
+      res.status(201).json({
+        msg: `selamat data telah berhasil ditambahkan`,
+        data
       });
+    } catch (err) {
+      res.status(400).json({
+        message: "Gagal menambahkan data cuti",
+        error: err.message || err
+      });
+    }
   }
-
+  
   static async editGaji(req, res, next) {
     try {
       let id = req.params.id;
+      
+      // Jika saat edit user mengunggah file baru, upload ke Supabase; jika tidak, pakai imageUrl lama
+      let imagePath = req.body.imageUrl;
+      if (req.file) {
+        imagePath = await uploadToSupabase(req.file);
+      }
+
       let obj = {
         KaryawanId: req.body.KaryawanId,
         mulaiTanggal: req.body.mulaiTanggal,
         sampaiTanggal: req.body.sampaiTanggal,
-        imageUrl: req.body.imageUrl,
+        imageUrl: imagePath,
         alasan: req.body.alasan,
         status: req.body.status
       };
 
       const [updatedRows] = await Cuti.update(obj, { where: { id } });
-      
+
       if (updatedRows === 0) {
         return res.status(444).json({ message: "Data tidak ditemukan atau tidak ada perubahan" });
       }
-      
+
       res.status(200).json({ msg: `data berhasil diubah` });
     } catch (error) {
-      res.status(500).json({ 
-        message: "Gagal memperbarui data cuti", 
-        error: error.message || error 
+      res.status(500).json({
+        message: "Gagal memperbarui data cuti",
+        error: error.message || error
       });
     }
   }
+}
 }
 
 module.exports = CutiController;
