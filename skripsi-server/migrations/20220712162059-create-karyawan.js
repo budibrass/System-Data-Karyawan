@@ -65,6 +65,9 @@ module.exports = {
       fotoProfile: {
         type: Sequelize.STRING
       },
+      qrcode: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

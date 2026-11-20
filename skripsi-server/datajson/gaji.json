@@ -1,7 +1,7 @@
 [
   {
     "KaryawanId": 1,
-    "tanggal": "2026-01-28 23:00:00.000+07",
+    "tanggal": "2026-10-28 23:00:00.000+07",
     "gajiPokok": 20000000,
     "lembur": true,
     "lamaLembur": 3,
@@ -19,7 +19,7 @@
   },
   {
     "KaryawanId": 2,
-    "tanggal": "2026-01-28 23:00:00.000+07",
+    "tanggal": "2026-10-28 23:00:00.000+07",
     "gajiPokok": 15000000,
     "lembur": true,
     "lamaLembur": 4,
@@ -37,7 +37,7 @@
   },
   {
     "KaryawanId": 3,
-    "tanggal": "2026-01-28 23:00:00.000+07",
+    "tanggal": "2026-10-28 23:00:00.000+07",
     "gajiPokok": 10000000,
     "lembur": false,
     "lamaLembur": 0,
@@ -55,7 +55,7 @@
   },
   {
     "KaryawanId": 4,
-    "tanggal": "2026-01-28 23:00:00.000+07",
+    "tanggal": "2026-10-28 23:00:00.000+07",
     "gajiPokok": 7000000,
     "lembur": true,
     "lamaLembur": 5,
@@ -73,7 +73,7 @@
   },
   {
     "KaryawanId": 5,
-    "tanggal": "2026-01-28 23:00:00.000+07",
+    "tanggal": "2026-10-28 23:00:00.000+07",
     "gajiPokok": 4500000,
     "lembur": true,
     "lamaLembur": 4,
@@ -91,7 +91,7 @@
   },
   {
     "KaryawanId": 6,
-    "tanggal": "2026-01-28 23:00:00.000+07",
+    "tanggal": "2026-10-28 23:00:00.000+07",
     "gajiPokok": 25000000,
     "lembur": true,
     "lamaLembur": 2,
@@ -109,7 +109,7 @@
   },
   {
     "KaryawanId": 7,
-    "tanggal": "2026-01-28 23:00:00.000+07",
+    "tanggal": "2026-10-28 23:00:00.000+07",
     "gajiPokok": 20000000,
     "lembur": true,
     "lamaLembur": 1,
@@ -127,7 +127,7 @@
   },
   {
     "KaryawanId": 8,
-    "tanggal": "2026-01-28 23:00:00.000+07",
+    "tanggal": "2026-10-28 23:00:00.000+07",
     "gajiPokok": 15000000,
     "lembur": false,
     "lamaLembur": 0,
@@ -145,7 +145,7 @@
   },
   {
     "KaryawanId": 9,
-    "tanggal": "2026-01-28 23:00:00.000+07",
+    "tanggal": "2026-10-28 23:00:00.000+07",
     "gajiPokok": 10000000,
     "lembur": true,
     "lamaLembur": 5,
@@ -163,7 +163,7 @@
   },
   {
     "KaryawanId": 10,
-    "tanggal": "2026-01-28 23:00:00.000+07",
+    "tanggal": "2026-10-28 23:00:00.000+07",
     "gajiPokok": 7000000,
     "lembur": true,
     "lamaLembur": 3,
@@ -181,7 +181,7 @@
   },
   {
     "KaryawanId": 1,
-    "tanggal": "2026-02-28 23:00:00.000+07",
+    "tanggal": "2026-09-28 23:00:00.000+07",
     "gajiPokok": 20000000,
     "lembur": true,
     "lamaLembur": 3,
@@ -199,7 +199,7 @@
   },
   {
     "KaryawanId": 2,
-    "tanggal": "2026-02-28 23:00:00.000+07",
+    "tanggal": "2026-09-28 23:00:00.000+07",
     "gajiPokok": 15000000,
     "lembur": true,
     "lamaLembur": 1,
@@ -217,7 +217,7 @@
   },
   {
     "KaryawanId": 3,
-    "tanggal": "2026-02-28 23:00:00.000+07",
+    "tanggal": "2026-09-28 23:00:00.000+07",
     "gajiPokok": 10000000,
     "lembur": false,
     "lamaLembur": 0,
@@ -235,7 +235,7 @@
   },
   {
     "KaryawanId": 4,
-    "tanggal": "2026-02-28 23:00:00.000+07",
+    "tanggal": "2026-09-28 23:00:00.000+07",
     "gajiPokok": 7000000,
     "lembur": true,
     "lamaLembur": 2,
@@ -253,7 +253,7 @@
   },
   {
     "KaryawanId": 5,
-    "tanggal": "2026-02-28 23:00:00.000+07",
+    "tanggal": "2026-09-28 23:00:00.000+07",
     "gajiPokok": 4500000,
     "lembur": true,
     "lamaLembur": 4,
@@ -271,7 +271,7 @@
   },
   {
     "KaryawanId": 6,
-    "tanggal": "2026-02-28 23:00:00.000+07",
+    "tanggal": "2026-09-28 23:00:00.000+07",
     "gajiPokok": 25000000,
     "lembur": false,
     "lamaLembur": 0,
@@ -289,7 +289,7 @@
   },
   {
     "KaryawanId": 7,
-    "tanggal": "2026-02-28 23:00:00.000+07",
+    "tanggal": "2026-09-28 23:00:00.000+07",
     "gajiPokok": 20000000,
     "lembur": true,
     "lamaLembur": 1,
@@ -307,7 +307,7 @@
   },
   {
     "KaryawanId": 8,
-    "tanggal": "2026-02-28 23:00:00.000+07",
+    "tanggal": "2026-09-28 23:00:00.000+07",
     "gajiPokok": 15000000,
     "lembur": true,
     "lamaLembur": 1,
@@ -325,7 +325,7 @@
   },
   {
     "KaryawanId": 9,
-    "tanggal": "2026-02-28 23:00:00.000+07",
+    "tanggal": "2026-09-28 23:00:00.000+07",
     "gajiPokok": 10000000,
     "lembur": true,
     "lamaLembur": 2,
@@ -343,7 +343,7 @@
   },
   {
     "KaryawanId": 10,
-    "tanggal": "2026-02-28 23:00:00.000+07",
+    "tanggal": "2026-09-28 23:00:00.000+07",
     "gajiPokok": 7000000,
     "lembur": true,
     "lamaLembur": 4,
@@ -361,7 +361,7 @@
   },
   {
     "KaryawanId": 1,
-    "tanggal": "2026-03-28 23:00:00.000+07",
+    "tanggal": "2026-08-28 23:00:00.000+07",
     "gajiPokok": 20000000,
     "lembur": true,
     "lamaLembur": 4,
@@ -379,7 +379,7 @@
   },
   {
     "KaryawanId": 2,
-    "tanggal": "2026-03-28 23:00:00.000+07",
+    "tanggal": "2026-08-28 23:00:00.000+07",
     "gajiPokok": 15000000,
     "lembur": true,
     "lamaLembur": 3,
@@ -397,7 +397,7 @@
   },
   {
     "KaryawanId": 3,
-    "tanggal": "2026-03-28 23:00:00.000+07",
+    "tanggal": "2026-08-28 23:00:00.000+07",
     "gajiPokok": 10000000,
     "lembur": true,
     "lamaLembur": 3,
@@ -415,7 +415,7 @@
   },
   {
     "KaryawanId": 4,
-    "tanggal": "2026-03-28 23:00:00.000+07",
+    "tanggal": "2026-08-28 23:00:00.000+07",
     "gajiPokok": 7000000,
     "lembur": true,
     "lamaLembur": 3,
@@ -433,7 +433,7 @@
   },
   {
     "KaryawanId": 5,
-    "tanggal": "2026-03-28 23:00:00.000+07",
+    "tanggal": "2026-08-28 23:00:00.000+07",
     "gajiPokok": 4500000,
     "lembur": true,
     "lamaLembur": 4,
@@ -451,7 +451,7 @@
   },
   {
     "KaryawanId": 6,
-    "tanggal": "2026-03-28 23:00:00.000+07",
+    "tanggal": "2026-08-28 23:00:00.000+07",
     "gajiPokok": 25000000,
     "lembur": true,
     "lamaLembur": 1,
@@ -469,7 +469,7 @@
   },
   {
     "KaryawanId": 7,
-    "tanggal": "2026-03-28 23:00:00.000+07",
+    "tanggal": "2026-08-28 23:00:00.000+07",
     "gajiPokok": 20000000,
     "lembur": true,
     "lamaLembur": 5,
@@ -487,7 +487,7 @@
   },
   {
     "KaryawanId": 8,
-    "tanggal": "2026-03-28 23:00:00.000+07",
+    "tanggal": "2026-08-28 23:00:00.000+07",
     "gajiPokok": 15000000,
     "lembur": false,
     "lamaLembur": 0,
@@ -505,7 +505,7 @@
   },
   {
     "KaryawanId": 9,
-    "tanggal": "2026-03-28 23:00:00.000+07",
+    "tanggal": "2026-08-28 23:00:00.000+07",
     "gajiPokok": 10000000,
     "lembur": true,
     "lamaLembur": 1,
@@ -523,7 +523,7 @@
   },
   {
     "KaryawanId": 10,
-    "tanggal": "2026-03-28 23:00:00.000+07",
+    "tanggal": "2026-08-28 23:00:00.000+07",
     "gajiPokok": 7000000,
     "lembur": true,
     "lamaLembur": 5,
@@ -541,7 +541,7 @@
   },
   {
     "KaryawanId": 1,
-    "tanggal": "2026-04-28 23:00:00.000+07",
+    "tanggal": "2026-07-28 23:00:00.000+07",
     "gajiPokok": 20000000,
     "lembur": true,
     "lamaLembur": 3,
@@ -559,7 +559,7 @@
   },
   {
     "KaryawanId": 2,
-    "tanggal": "2026-04-28 23:00:00.000+07",
+    "tanggal": "2026-07-28 23:00:00.000+07",
     "gajiPokok": 15000000,
     "lembur": true,
     "lamaLembur": 2,
@@ -577,7 +577,7 @@
   },
   {
     "KaryawanId": 3,
-    "tanggal": "2026-04-28 23:00:00.000+07",
+    "tanggal": "2026-07-28 23:00:00.000+07",
     "gajiPokok": 10000000,
     "lembur": true,
     "lamaLembur": 4,
@@ -595,7 +595,7 @@
   },
   {
     "KaryawanId": 4,
-    "tanggal": "2026-04-28 23:00:00.000+07",
+    "tanggal": "2026-07-28 23:00:00.000+07",
     "gajiPokok": 7000000,
     "lembur": true,
     "lamaLembur": 1,
@@ -613,7 +613,7 @@
   },
   {
     "KaryawanId": 5,
-    "tanggal": "2026-04-28 23:00:00.000+07",
+    "tanggal": "2026-07-28 23:00:00.000+07",
     "gajiPokok": 4500000,
     "lembur": true,
     "lamaLembur": 4,
@@ -631,7 +631,7 @@
   },
   {
     "KaryawanId": 6,
-    "tanggal": "2026-04-28 23:00:00.000+07",
+    "tanggal": "2026-07-28 23:00:00.000+07",
     "gajiPokok": 25000000,
     "lembur": true,
     "lamaLembur": 3,
@@ -649,7 +649,7 @@
   },
   {
     "KaryawanId": 7,
-    "tanggal": "2026-04-28 23:00:00.000+07",
+    "tanggal": "2026-07-28 23:00:00.000+07",
     "gajiPokok": 20000000,
     "lembur": true,
     "lamaLembur": 4,
@@ -667,7 +667,7 @@
   },
   {
     "KaryawanId": 8,
-    "tanggal": "2026-04-28 23:00:00.000+07",
+    "tanggal": "2026-07-28 23:00:00.000+07",
     "gajiPokok": 15000000,
     "lembur": true,
     "lamaLembur": 1,
@@ -685,7 +685,7 @@
   },
   {
     "KaryawanId": 9,
-    "tanggal": "2026-04-28 23:00:00.000+07",
+    "tanggal": "2026-07-28 23:00:00.000+07",
     "gajiPokok": 10000000,
     "lembur": true,
     "lamaLembur": 4,
@@ -703,7 +703,7 @@
   },
   {
     "KaryawanId": 10,
-    "tanggal": "2026-04-28 23:00:00.000+07",
+    "tanggal": "2026-07-28 23:00:00.000+07",
     "gajiPokok": 7000000,
     "lembur": true,
     "lamaLembur": 2,

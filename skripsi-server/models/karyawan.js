@@ -41,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     tanggalMasuk: DataTypes.DATE,
     jumlahTanggunganAnak: DataTypes.INTEGER,
     fotoProfile: DataTypes.STRING,
+    qrcode: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Karyawan',

@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     mulaiTanggal: DataTypes.DATE,
     sampaiTanggal: DataTypes.DATE,
     alasan: DataTypes.STRING,
-    status: DataTypes.STRING
+    status: DataTypes.STRING,
+    imageUrl: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Cuti',

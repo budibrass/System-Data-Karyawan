@@ -20,7 +20,9 @@ app.use(express.json());
 app.use(Cors());
 
 app.use("/", route);
-app.use('/uploads', express.static('public/uploads'));
+const isRailway = process.env.RAILWAY_SERVICE_NAME;
+const uploadDir = isRailway ? "/app/uploads" : path.join(__dirname, "public/uploads");
+app.use('/uploads', express.static(uploadDir));
 // app.use(errHandler)
 
 app.listen(PORT, ()=> {

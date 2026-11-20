@@ -46,10 +46,16 @@ class CutiController {
   }
 
   static addCuti(req, res, next) {
+    let imagePath = "";
+    if (req.file) {
+        imagePath = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+    }
+
     let body = {
         KaryawanId: req.body.KaryawanId,
         mulaiTanggal: req.body.mulaiTanggal,
         sampaiTanggal: req.body.sampaiTanggal,
+        imageUrl: imagePath,
         alasan: req.body.alasan,
         status: req.body.status
     };
@@ -76,6 +82,7 @@ class CutiController {
         KaryawanId: req.body.KaryawanId,
         mulaiTanggal: req.body.mulaiTanggal,
         sampaiTanggal: req.body.sampaiTanggal,
+        imageUrl: req.body.imageUrl,
         alasan: req.body.alasan,
         status: req.body.status
       };

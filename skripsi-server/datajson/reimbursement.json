@@ -1,72 +1,82 @@
 [
   {
     "KaryawanId": 1,
-    "tanggal": "2026-03-12T09:30:00.000Z",
+    "tanggal": "2026-09-12T09:30:00.000Z",
     "namaReimbursement": "Internet & Telekomunikasi Bulanan",
-    "jumlah": 350000,
+    "jumlah": 780000,
+    "imageUrl": "http://localhost:3000/uploads/1795084214294-788776050.pdf",
     "status": "diterima"
   },
   {
     "KaryawanId": 1,
-    "tanggal": "2026-05-04T14:15:22.000Z",
+    "tanggal": "2026-10-04T14:15:22.000Z",
     "namaReimbursement": "Bensin & Parkir Kunjungan Klien",
-    "jumlah": 125000,
+    "jumlah": 268000,
+    "imageUrl": "http://localhost:3000/uploads/1795084230264-956965654.pdf",
     "status": "waitconfirm"
   },
   {
     "KaryawanId": 2,
-    "tanggal": "2026-02-18T11:00:00.000Z",
+    "tanggal": "2026-09-18T11:00:00.000Z",
     "namaReimbursement": "Pembelian Buku Referensi Kerja",
     "jumlah": 220000,
+    "imageUrl": "http://localhost:3000/uploads/1795084255932-363487765.pdf",
     "status": "diterima"
   },
   {
     "KaryawanId": 2,
-    "tanggal": "2026-04-20T16:45:00.000Z",
+    "tanggal": "2026-10-20T16:45:00.000Z",
     "namaReimbursement": "Medical Checkup Tahunan",
-    "jumlah": 750000,
+    "jumlah": 700000,
+    "imageUrl": "http://localhost:3000/uploads/1795084277593-858410412.pdf",
     "status": "waitconfirm"
   },
   {
     "KaryawanId": 3,
-    "tanggal": "2026-01-10T10:05:00.000Z",
+    "tanggal": "2026-09-10T10:05:00.000Z",
     "namaReimbursement": "Konsumsi Rapat Tim",
-    "jumlah": 450000,
+    "jumlah": 168000,
+    "imageUrl": "http://localhost:3000/uploads/1795084295537-487480161.pdf",
     "status": "diterima"
   },
   {
     "KaryawanId": 3,
-    "tanggal": "2026-05-12T08:30:11.000Z",
+    "tanggal": "2026-10-12T08:30:11.000Z",
     "namaReimbursement": "Biaya Tol Luar Kota",
-    "jumlah": 180000,
+    "jumlah": 67500,
+    "imageUrl": "http://localhost:3000/uploads/1795084316133-826564009.pdf",
     "status": "waitconfirm"
   },
   {
     "KaryawanId": 4,
-    "tanggal": "2026-03-25T13:20:00.000Z",
+    "tanggal": "2026-09-25T13:20:00.000Z",
     "namaReimbursement": "Perbaikan Laptop Kantor (RAM Upgrade)",
-    "jumlah": 900000,
+    "jumlah": 850000,
+    "imageUrl": "http://localhost:3000/uploads/1795084331714-625971205.pdf",
     "status": "diterima"
   },
   {
     "KaryawanId": 4,
-    "tanggal": "2026-04-02T10:00:00.000Z",
+    "tanggal": "2026-10-02T10:00:00.000Z",
     "namaReimbursement": "Tiket Pesawat Dinas Surabaya",
-    "jumlah": 1400000,
+    "jumlah": 1600000,
+    "imageUrl": "http://localhost:3000/uploads/1795084351252-461447718.pdf",
     "status": "ditolak"
   },
   {
     "KaryawanId": 5,
-    "tanggal": "2026-02-05T15:00:00.000Z",
+    "tanggal": "2026-09-05T15:00:00.000Z",
     "namaReimbursement": "Subsidi Biaya Listrik WFH",
-    "jumlah": 250000,
+    "jumlah": 385000,
+    "imageUrl": "http://localhost:3000/uploads/1795084365753-475417338.pdf",
     "status": "diterima"
   },
   {
     "KaryawanId": 5,
-    "tanggal": "2026-05-15T11:30:00.000Z",
+    "tanggal": "2026-10-15T11:30:00.000Z",
     "namaReimbursement": "Hotel Perjalanan Dinas Bandung",
-    "jumlah": 650000,
+    "jumlah": 1235000,
+    "imageUrl": "http://localhost:3000/uploads/1795084382816-794661137.pdf",
     "status": "waitconfirm"
   }
 ]
