@@ -14,11 +14,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "postgres",
-    "password": "MmwskNmRUnsWXwYNEWqNVSpqTTdreWTm",
-    "database": "railway",
-    "host": "kodama.proxy.rlwy.net",
-    "port": 32145,
+    "username": "postgres.nhqyxconexlhvowmbfnw",
+    "password": "FboMYWRuedCQStlg",
+    "database": "postgres",
+    "host": "aws-1-ap-southeast-1.pooler.supabase.com",
+    "port": 6543,
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
